@@ -1,12 +1,12 @@
 {
   "name": "sensai-api",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "description": "sensai-api",
+  "main": "listen.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "seed": "node ./db/seeds/run-seed.js",
+    "setup-dbs": "psql -f ./db/setup.sql",
+    "seed-prod": "NODE_ENV=production npm run seed"
   },
   "devDependencies": {
     "vite": "^4.4.5",
