@@ -1,6 +1,5 @@
 const format = require('pg-format');
 const db = require('../connection');
-const { createRef, formatComments } = require('./utils');
 
 const seed = async ({
   assignmentsData,
