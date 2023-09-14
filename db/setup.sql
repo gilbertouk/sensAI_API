@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS sensai_test;
+DROP DATABASE IF EXISTS sensai;
+
+CREATE DATABASE sensai_test;
+CREATE DATABASE sensai;
