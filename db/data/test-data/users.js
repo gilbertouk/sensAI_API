@@ -24,7 +24,7 @@ module.exports = [
       email: 'user3.surname3@gmail.com',
       role: 'student',
       created_at: '2000-01-11',
-      disability: 'Null'
+      disability: 'null'
     },
     {
       id: 4,
@@ -51,7 +51,7 @@ module.exports = [
       email: 'user6.surname6@gmail.com',
       role: 'student',
       created_at: '2000-01-23',
-      disability: Null
+      disability: null
     },
     {
       id: 7,
@@ -105,7 +105,7 @@ module.exports = [
       email: 'user12.surname12@hotmail.com',
       role: 'student',
       created_at: '2014-06-02',
-      disability: Null
+      disability: null
     },
     {
       id: 13,
@@ -132,7 +132,7 @@ module.exports = [
       email: 'user15.surname15@gmail.com',
       role: 'student',
       created_at: '2015-02-09',
-      disability: Null
+      disability: null
     },
     {
       id: 16,
@@ -141,7 +141,7 @@ module.exports = [
       email: 'user16.surname16@example.com',
       role: 'student',
       created_at: '2010-07-23',
-      disability: Null
+      disability: null
     },
     {
       id: 17,
@@ -159,7 +159,7 @@ module.exports = [
       email: 'user18.surname18@gmail.com',
       role: 'student',
       created_at: '2012-02-18',
-      disability: Null
+      disability: null
     },
     {
       id: 19,
@@ -168,7 +168,7 @@ module.exports = [
       email: 'user19.surname19@example.com',
       role: 'student',
       created_at: '2014-09-20',
-      disability: Null
+      disability: null
     },
     {
       id: 20,
@@ -195,7 +195,7 @@ module.exports = [
       email: 'user22.surname22@gmail.com',
       role: 'student',
       created_at: '2021-10-26',
-      disability: Null
+      disability: null
     },
     {
       id: 23,
@@ -204,7 +204,7 @@ module.exports = [
       email: 'user23.surname23@example.com',
       role: 'student',
       created_at: '2011-09-11',
-      disability: Null
+      disability: null
     },
     {
       id: 24,
@@ -213,7 +213,7 @@ module.exports = [
       email: 'user24.surname24@hotmail.com',
       role: 'student',
       created_at: '2011-03-01',
-      disability: Null
+      disability: null
     },
     {
       id: 25,
@@ -276,7 +276,7 @@ module.exports = [
       email: 'user31.surname31@hotmail.com',
       role: 'student',
       created_at: '2019-12-02',
-      disability: Null
+      disability: null
     },
     {
       id: 32,
@@ -348,7 +348,7 @@ module.exports = [
       email: 'user39.surname39@hotmail.com',
       role: 'student',
       created_at: '2018-04-14',
-      disability: Null
+      disability: null
     },
     {
       id: 40,
@@ -465,7 +465,7 @@ module.exports = [
       email: 'user52.surname52@gmail.com',
       role: 'student',
       created_at: '2017-05-29',
-      disability: Null
+      disability: null
     },
     {
       id: 53,
@@ -564,7 +564,7 @@ module.exports = [
       email: 'user63.surname63@gmail.com',
       role: 'student',
       created_at: '2014-03-02',
-      disability: Null
+      disability: null
     },
     {
       id: 64,
@@ -591,7 +591,7 @@ module.exports = [
       email: 'user66.surname66@yahoo.com',
       role: 'student',
       created_at: '2018-10-28',
-      disability: Null
+      disability: null
     },
     {
       id: 67,
@@ -609,7 +609,7 @@ module.exports = [
       email: 'user68.surname68@hotmail.com',
       role: 'student',
       created_at: '2015-06-06',
-      disability: Null
+      disability: null
     },
     {
       id: 69,
@@ -618,7 +618,7 @@ module.exports = [
       email: 'user69.surname69@gmail.com',
       role: 'student',
       created_at: '2000-05-24',
-      disability: Null
+      disability: null
     },
     {
       id: 70,
@@ -636,7 +636,7 @@ module.exports = [
       email: 'user71.surname71@hotmail.com',
       role: 'student',
       created_at: '2020-08-25',
-      disability: Null
+      disability: null
     },
     {
       id: 72,
@@ -708,7 +708,7 @@ module.exports = [
       email: 'user79.surname79@example.com',
       role: 'student',
       created_at: '2002-01-23',
-      disability: Null
+      disability: null
     },
     {
       id: 80,
@@ -717,7 +717,7 @@ module.exports = [
       email: 'user80.surname80@example.com',
       role: 'student',
       created_at: '2020-05-13',
-      disability: Null
+      disability: null
     },
     {
       id: 81,
@@ -807,7 +807,7 @@ module.exports = [
       email: 'user90.surname90@yahoo.com',
       role: 'student',
       created_at: '2016-07-01',
-      disability: Null
+      disability: null
     },
     {
       id: 91,
@@ -816,7 +816,7 @@ module.exports = [
       email: 'user91.surname91@yahoo.com',
       role: 'student',
       created_at: '2020-02-07',
-      disability: Null
+      disability: null
     },
     {
       id: 92,
@@ -861,7 +861,7 @@ module.exports = [
       email: 'user96.surname96@hotmail.com',
       role: 'student',
       created_at: '2009-06-13',
-      disability: Null
+      disability: null
     },
     {
       id: 97,
@@ -879,7 +879,7 @@ module.exports = [
       email: 'user98.surname98@yahoo.com',
       role: 'student',
       created_at: '2007-12-19',
-      disability: Null
+      disability: null
     },
     {
       id: 99,
@@ -897,7 +897,7 @@ module.exports = [
       email: 'user100.surname100@yahoo.com',
       role: 'student',
       created_at: '2003-10-07',
-      disability: Null
+      disability: null
     },
     {
         id: 101,
@@ -906,7 +906,7 @@ module.exports = [
         email: 'user101.surname101@yahoo.com',
         role: 'teacher',
         created_at: '2003-11-07',
-        disability: Null,
+        disability: null,
     },
     {
         id: 102,
@@ -915,6 +915,6 @@ module.exports = [
         email: 'user102.surname102@yahoo.com',
         role: 'teacher',
         created_at: '2005-10-07',
-        disability: Null,
+        disability: null,
     },
 ]
