@@ -24,7 +24,7 @@ module.exports = [
       email: 'user3.surname3@gmail.com',
       role: 'student',
       created_at: '2000-01-11',
-      disability: 'null'
+      disability: null
     },
     {
       id: 4,
