@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { getAllUsers } = require('./controllers/users.controllers.js');
+
 /*
 const articles = require('./routes/articles.routes');
 const comments = require('./routes/comments.routes');
@@ -15,12 +16,15 @@ const {
   Error500,
   pathError,
 } = require('./errors');
+const { getLessonsByStudentId } = require('./controllers/getLessonsByStudentId.js');
 
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
+app.get("/api/lessons/:student_id", getLessonsByStudentId)
+
 /*
 app.use('/api/articles', articles);
 app.use('/api/comments', comments);
@@ -37,6 +41,8 @@ app.use(Error500);
 app.use(express.json())
 
 app.get('/api/users', getAllUsers)
+
+
 
 app.use((req, res) => {
     res.status(404).send({msg: 'not found'})

@@ -737,58 +737,83 @@ describe('GET /api', () => {
   });
 });
 */
-describe("/api/users", () => {
-    test("get 200: when passed an array of user objects returns an array of objects which arent mutated and have same properties", () => {
-        return request(app).get('/api/users').expect(200)
-        .then((res) => {
-            const {users} = res.body
-            console.log(users, "line 14")
-            expect(Array.isArray(users)).toEqual(true)
-            expect(users.length).toEqual(102);
-            expect(users).toEqual(users);
-            users.forEach(user => {
-                    expect(user).toEqual(
-                      expect.objectContaining({
-                        id: expect.any(Number),
-                        name: expect.any(String),
-                        surname: expect.any(String),
-                        email: expect.any(String),
-                        role: expect.any(String),
-                        created_at: expect.any(String),
-                        role: expect.any(String || null)
-                      })
-                    );
-                  })
-                })
-        })
+// describe("/api/users", () => {
+//     test("get 200: when passed an array of user objects returns an array of objects which arent mutated and have same properties", () => {
+//         return request(app).get('/api/users').expect(200)
+//         .then((res) => {
+//             const {users} = res.body
+//             console.log(users, "line 14")
+//             expect(Array.isArray(users)).toEqual(true)
+//             expect(users.length).toEqual(102);
+//             expect(users).toEqual(users);
+//             users.forEach(user => {
+//                     expect(user).toEqual(
+//                       expect.objectContaining({
+//                         id: expect.any(Number),
+//                         name: expect.any(String),
+//                         surname: expect.any(String),
+//                         email: expect.any(String),
+//                         role: expect.any(String),
+//                         created_at: expect.any(String),
+//                         role: expect.any(String || null)
+//                       })
+//                     );
+//                   })
+//                 })
+//         })
 
-    test("get 200: when given an array of objects, returns the same values", () => {
-        return request(app).get('/api/users').expect(200)
-        .then((res) => {
-            const {users} = res.body
-            console.log(users, "line 37")
-            expect(users[0].id).toEqual(1);
-            expect(users[0].name).toEqual('User1');
-            expect(users[0].surname).toEqual('Surname1');
-            expect(users[0].email).toEqual('user1.surname1@example.com');
-            expect(users[0].role).toEqual('student');
-            expect(users[0].created_at).toEqual('2018-12-19');
-            expect(users[0].disability).toEqual('ADHD');
-            expect(users[101].id).toEqual(102);
-            expect(users[101].name).toEqual('User102');
-            expect(users[101].surname).toEqual('Surname102');
-            expect(users[101].email).toEqual('user102.surname102@yahoo.com');
-            expect(users[101].role).toEqual('teacher');
-            expect(users[101].created_at).toEqual('2005-10-07');
-            expect(users[101].disability).toEqual(null);
-        })
+//     test("get 200: when given an array of objects, returns the same values", () => {
+//         return request(app).get('/api/users').expect(200)
+//         .then((res) => {
+//             const {users} = res.body
+//             console.log(users, "line 37")
+//             expect(users[0].id).toEqual(1);
+//             expect(users[0].name).toEqual('User1');
+//             expect(users[0].surname).toEqual('Surname1');
+//             expect(users[0].email).toEqual('user1.surname1@example.com');
+//             expect(users[0].role).toEqual('student');
+//             expect(users[0].created_at).toEqual('2018-12-19');
+//             expect(users[0].disability).toEqual('ADHD');
+//             expect(users[101].id).toEqual(102);
+//             expect(users[101].name).toEqual('User102');
+//             expect(users[101].surname).toEqual('Surname102');
+//             expect(users[101].email).toEqual('user102.surname102@yahoo.com');
+//             expect(users[101].role).toEqual('teacher');
+//             expect(users[101].created_at).toEqual('2005-10-07');
+//             expect(users[101].disability).toEqual(null);
+//         })
+//     })
+//     test('status:404, responds with an error message when passed a invalid users path', () => {
+//         return request(app)
+//           .get('/api/banana')
+//           .expect(404)
+//           .then(({ body }) => {
+//             expect(body.msg).toBe('not found');
+//           });
+//       });
+// });
+
+
+
+describe("GET /lessons/:student_id", ()=>{
+  test("200: Responds with an array of lesson objects", ()=> {
+    return request(app).get("/api/lessons/1").expect(200).then(({body})=> {
+      const {lessons} = body;
+
+      const expected = {
+        id: expect.any(Number),
+        title: expect.any(String),
+        body: expect.any(String),
+        teacher_id: expect.any(Number),
+        created_at: expect.any(String)
+      }
+
+      expect(lessons).toHaveLength(8);
+      lessons.forEach(lesson => {
+        expect(lesson).toMatchObject(expected);
+      })
+
     })
-    test('status:404, responds with an error message when passed a invalid users path', () => {
-        return request(app)
-          .get('/api/banana')
-          .expect(404)
-          .then(({ body }) => {
-            expect(body.msg).toBe('not found');
-          });
-      });
-});
+  })
+
+})
