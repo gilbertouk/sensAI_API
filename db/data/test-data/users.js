@@ -914,7 +914,7 @@ module.exports = [
         surname: 'Surname102',
         email: 'user102.surname102@yahoo.com',
         role: 'teacher',
-        created_at: '2005-10-07',
+        created_at: '2018-12-19',
         disability: null,
     },
 ]
