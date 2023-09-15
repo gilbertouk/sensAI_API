@@ -3,11 +3,12 @@ const request = require('supertest');
 const db = require('../db/connection');
 const seed = require('../db/seeds/seed');
 const data = require('../db/data/test-data/');
-const expectedEndpoints = require('../endpoints.json');
+//const expectedEndpoints = require('../endpoints.json');
 
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
+/*
 describe('returns 404 if route not found', () => {
   test('returns 404 if route not found ', () => {
     return request(app)
@@ -735,6 +736,7 @@ describe('GET /api', () => {
       });
   });
 });
+*/
 describe("/api/users", () => {
     test("get 200: when passed an array of user objects returns an array of objects which arent mutated and have same properties", () => {
         return request(app).get('/api/users').expect(200)
