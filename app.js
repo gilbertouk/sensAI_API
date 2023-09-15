@@ -1,16 +1,38 @@
+const express = require("express");
+const cors = require("cors");
+const { getAllUsers } = require("./controllers/users.controllers.js");
 
-const express = require('express');
-const { getAllUsers } = require('./controllers/users.controllers.js');
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-app.get('/api/users', getAllUsers)
+const apiRouter = require("./routes");
 
-app.use((req, res) => {
-    res.status(404).send({msg: 'not found'})
-})
+app.get("/api/users", getAllUsers);
+
+// router
+app.use("/api", apiRouter);
+
+//handle custom errors
+app.use((err, req, res, next) => {
+  if (err.status && err.msg) {
+    res.status(err.status).send({ msg: err.msg });
+  } else {
+    next(err);
+  }
+});
+
+//handle Database errors
+app.use((err, req, res, next) => {
+  if (err.code === "22P02") {
+    res.status(400).send({ msg: "Bad request" });
+  } else {
+    next(err);
+  }
+});
 
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(500).send({ msg: "server error getting API" });
 });
 
