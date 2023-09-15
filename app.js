@@ -31,13 +31,6 @@ app.use(Error400);
 app.use(Error404);
 app.use(Error500);
 */
-const express = require('express')
-const {getAllUsers } = require('./controllers/users.controllers.js');
-const app = express();
-const cors = require('cors');
-app.use(express.json())
-app.use(cors());
-app.use(express.json())
 
 app.get('/api/users', getAllUsers)
 
