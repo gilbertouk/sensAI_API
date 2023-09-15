@@ -6,13 +6,17 @@
   "scripts": {
     "seed": "node ./db/seeds/run-seed.js",
     "setup-dbs": "psql -f ./db/setup.sql",
-    "seed-prod": "NODE_ENV=production npm run seed"
+    "seed-prod": "NODE_ENV=production npm run seed",
+    "test": "jest"
   },
   "devDependencies": {
     "vite": "^4.4.5",
     "@types/jest": "^29.5.3",
     "jest": "^27.5.1",
-    "jest-sorted": "^1.0.14"
+    "jest-sorted": "^1.0.14",
+    "jest-extended": "^2.0.0",
+    "pg-format": "^1.0.4",
+    "supertest": "^6.3.3"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -20,7 +24,8 @@
     "express": "^4.18.2",
     "pg": "^8.7.3",
     "pg-format": "^1.0.4",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.1"
   },
   "jest": {
     "setupFilesAfterEnv": [
