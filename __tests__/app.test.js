@@ -2,7 +2,7 @@ const app = require('../app');
 const request = require('supertest');
 const db = require('../db/connection');
 const seed = require('../db/seeds/seed');
-const data = require('../db/data/test-data/');
+const data = require('../db/data/test-data/index.js');
 //const expectedEndpoints = require('../endpoints.json');
 
 beforeEach(() => seed(data));
@@ -772,14 +772,14 @@ describe("/api/users", () => {
             expect(users[0].surname).toEqual('Surname1');
             expect(users[0].email).toEqual('user1.surname1@example.com');
             expect(users[0].role).toEqual('student');
-            expect(users[0].created_at).toEqual('2018-12-19');
+            expect(users[0].created_at).toEqual('2018-12-19T00:00:00.000Z');
             expect(users[0].disability).toEqual('ADHD');
             expect(users[101].id).toEqual(102);
             expect(users[101].name).toEqual('User102');
             expect(users[101].surname).toEqual('Surname102');
             expect(users[101].email).toEqual('user102.surname102@yahoo.com');
             expect(users[101].role).toEqual('teacher');
-            expect(users[101].created_at).toEqual('2005-10-07');
+            expect(users[101].created_at).toEqual('2018-12-19T00:00:00.000Z');
             expect(users[101].disability).toEqual(null);
         })
     })
