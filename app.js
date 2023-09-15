@@ -1,7 +1,11 @@
-/*const express = require('express');
-//const cors = require('cors');
-const { getAllUsers } = require('./controllers/users.controllers.js');
-
+const express = require('express')
+const {getAllUsers } = require('./controllers/users.controllers.js');
+const app = express();
+const cors = require('cors');
+app.use(express.json())
+app.use(cors());
+app.use(express.json())
+/*
 const articles = require('./routes/articles.routes');
 const comments = require('./routes/comments.routes');
 const endpoints = require('./routes/endpoints.routes');
@@ -15,11 +19,6 @@ const {
   pathError,
 } = require('./errors');
 
-const app = express();
-
-app.use(cors());
-
-app.use(express.json());
 app.use('/api/articles', articles);
 app.use('/api/comments', comments);
 app.use('/api', endpoints);
