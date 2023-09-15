@@ -1,4 +1,4 @@
-const { fetchAllUsers } = require('./models.js')
+const { fetchAllUsers } = require('../models/users.models.js')
 //const endpoints = require('../endpoints.json')
 
 const getAllUsers = (req, res, next) => {
