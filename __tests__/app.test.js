@@ -93,3 +93,31 @@ describe("GET /api/users/email/:email", () => {
       });
   });
 });
+
+describe("POST /api/users/email", () => {
+  test("should return 201 and the inserted user", () => {
+    return request(app)
+      .post("/api/users/email")
+      .send({ email: "new.user@example.com" })
+      .expect(201)
+      .then((res) => {
+        const { user } = res.body;
+        expect(user).toEqual(
+          expect.objectContaining({
+            id: expect.any(Number),
+            email: "new.user@example.com",
+          })
+        );
+      });
+  });
+
+  test("should return 400 for invalid request", () => {
+    return request(app)
+      .post("/api/users/email")
+      .send({})
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request");
+      });
+  });
+});

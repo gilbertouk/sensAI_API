@@ -16,5 +16,12 @@ const selectUserByEmail = (email) => {
       return response.rows[0];
     });
 };
+const insertUserByEmail = (email) => {
+  return db
+    .query("INSERT INTO users (email) VALUES ($1) RETURNING *", [email])
+    .then(({ rows }) => {
+      return rows[0];
+    });
+};
 
-module.exports = { fetchAllUsers, selectUserByEmail };
+module.exports = { fetchAllUsers, selectUserByEmail, insertUserByEmail };

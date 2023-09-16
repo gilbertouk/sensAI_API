@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getUserByEmail } = require("../controllers/users.controllers");
+const {
+  getUserByEmail,
+  postUserByEmail,
+} = require("../controllers/users.controllers");
 
 router.get("/email/:email", getUserByEmail);
+router.post("/email", postUserByEmail);
 
 module.exports = router;
