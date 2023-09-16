@@ -1,7 +1,7 @@
 const {
   fetchAllUsers,
   selectUserByEmail,
-} = require('../models/users.models.js');
+} = require("../models/users.models.js");
 
 const getAllUsers = (req, res, next) => {
   fetchAllUsers()
