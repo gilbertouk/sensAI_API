@@ -7,7 +7,9 @@
     "seed": "node ./db/seeds/run-seed.js",
     "setup-dbs": "psql -f ./db/setup.sql",
     "seed-prod": "NODE_ENV=production npm run seed",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch" ,
+    "start": "node listen.js" 
   },
   "devDependencies": {
     "jest": "^29.6.2",
@@ -25,7 +27,6 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "jest-extended/all",
       "jest-sorted"
     ]
   },

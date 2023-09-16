@@ -1,5 +1,7 @@
-const { fetchAllUsers } = require("../models/users.models.js");
-//const endpoints = require('../endpoints.json')
+const {
+  fetchAllUsers,
+  selectUserByEmail,
+} = require('../models/users.models.js');
 
 const getAllUsers = (req, res, next) => {
   fetchAllUsers()
@@ -11,4 +13,15 @@ const getAllUsers = (req, res, next) => {
     });
 };
 
-module.exports = { getAllUsers };
+const getUserByEmail = (req, res, next) => {
+  const { email } = req.params;
+  selectUserByEmail(email)
+    .then((user) => {
+      res.status(200).send({ user });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+module.exports = { getAllUsers, getUserByEmail };
