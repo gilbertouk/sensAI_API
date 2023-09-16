@@ -64,3 +64,32 @@ describe("/api/users", () => {
       });
   });
 });
+describe("GET /api/users/email/:email", () => {
+  test("should return 200", () => {
+    return request(app)
+      .get("/api/users/email/user1.surname1@example.com")
+      .expect(200)
+      .then((res) => {
+        const { user } = res.body;
+        expect(user).toEqual(
+          expect.objectContaining({
+            id: expect.any(Number),
+            name: expect.any(String),
+            surname: expect.any(String),
+            email: expect.any(String),
+            role: expect.any(String),
+            created_at: expect.any(String),
+            disability: expect.any(String),
+          })
+        );
+      });
+  });
+  test("should return 404 error if no record found", () => {
+    return request(app)
+      .get("/api/users/banana")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Not found");
+      });
+  });
+});
