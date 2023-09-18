@@ -3,9 +3,9 @@ const router = express.Router();
 
 const {
   getLessonsByTeacherid
-} = require("../controllers/lessons.controllers");
+} = require("../controllers/lessons.controllers.js");
 
-router.get("/classes/:teacher_id/:class_id/lessons", getLessonsByTeacherid);
+router.get("/:teacher_id/:class_id/lessons", getLessonsByTeacherid);
 
 
 module.exports = router;
