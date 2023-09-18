@@ -145,14 +145,14 @@ describe("GET /lessons/:student_id", ()=>{
     return request(app).get("/api/lessons/test").expect(400).then(({body}) =>{
       const {msg} = body;
       
-      expect(msg).toEqual("Invalid input");
+      expect(msg).toEqual("Bad request");
     })
   })
   test("404: Responds with not found when given bad student_id", ()=> {
     return request(app).get("/api/lessons/1000000").expect(404).then(({body}) => {
       const {msg} = body;
 
-      expect(msg).toEqual("not found");
+      expect(msg).toEqual("Not found");
     })
   })
 })
