@@ -38,6 +38,21 @@
       ]
     }
   },
+  "GET /lessons/:student_id": {
+    "description": "Responds with array of lessons for student_id given",
+    "queries": [],
+    "exampleResponse": {
+      "lessons": [
+        {
+          "id": 1,
+          "title": "English: Shakespeare",
+          "body": "An exploration of Shakespeare, his plays and books",
+          "teacher_id": 101,
+          "created_at": "2021-10-10T23:00:00.000Z"
+        }
+      ]
+    }
+  },
   "GET /api/student/:student_id/assignments/:assignment_id": {
     "description": "serves an array of a specific student assignment",
     "queries": [],
