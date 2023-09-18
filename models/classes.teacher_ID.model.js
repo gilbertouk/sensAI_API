@@ -8,7 +8,7 @@ const fetchClassesByTeacherID = (teacher_id) => {
     `, [teacher_id])
     .then(({ rows }) => {
         const classes = rows;
-        console.log(rows, "in model ln 11")
+        
         if (classes.length === 0) {
             return Promise.reject({
                 status: 404,

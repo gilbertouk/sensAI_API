@@ -3,10 +3,11 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
-const apiRouter = require("./routes");
+
 const { getAllUsers } = require('./controllers/users.controllers.js');
 const { getLessonByID } = require('./controllers/lessons.lesson_ID.controller.js');
 const { getClassesByTeacherID } = require('./controllers/classes.teacher_ID.controller.js');
+const { getLessonsByStudentId } = require("./controllers/getLessonsByStudentId.js") 
 
 const apiRouter = require("./routes");
 

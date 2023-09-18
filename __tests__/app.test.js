@@ -171,7 +171,7 @@ describe("/api/users", () => {
           .get('/api/1000000')
           .expect(404)
           .then(({ body }) => {
-            expect(body.msg).toBe(undefined);
+            expect(body.msg).toBe("Not found");
           });
       });
 });
@@ -194,7 +194,7 @@ describe("GET /api/lessons/:lesson_id", () => {
       return request(app).get('/api/lessons/1').expect(200)
       .then((res) => {
           const {lessons} = res.body;
-          expect(lessons).toMatchObject(result)
+          expect(lessons[0]).toMatchObject(result)
       })
   })
   test("200 GET: responds with an lesson object by lesson_ID with properties id, title, body, teacher_id, created_at", () => {  
@@ -202,16 +202,18 @@ describe("GET /api/lessons/:lesson_id", () => {
       .then((res) => {
           const {lessons} = res.body;
           expect(typeof lessons).toBe("object")
-          expect(lessons).toEqual(
-                    expect.objectContaining({
-                      id: expect.any(Number),
-                      title: expect.any(String),
-                      body: expect.any(String),
-                      teacher_id: expect.any(Number),
-                      created_at: expect.any(String)
-                    })
-                  );
-              })
+          lessons.forEach(lesson => {
+            expect(lesson).toEqual(
+                      expect.objectContaining({
+                        id: expect.any(Number),
+                        title: expect.any(String),
+                        body: expect.any(String),
+                        teacher_id: expect.any(Number),
+                        created_at: expect.any(String)
+                      })
+                    );
+                })
+            })
           })
 
   test('status:400, responds with an error message when passed a invalid input_id input', () => {
@@ -236,7 +238,7 @@ describe("GET /api/classes/:teacher_id", () => {
       return request(app).get('/api/classes/101').expect(200)
       .then((res) => {
           let {classes} = res.body;
-          console.log ({classes}, "in test")
+
           expect(Array.isArray(classes)).toEqual(true);
           expect(classes.length).toBe(2)
       })
@@ -286,7 +288,6 @@ describe("GET /api/classes/:teacher_id", () => {
             .get('/api/classes/900')
             .expect(404)
             .then(({ body }) => {
-              console.log(body)
               expect(body.msg).toBe('Not found');
             });
         });
