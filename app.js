@@ -2,7 +2,9 @@ const express = require("express");
 const cors = require("cors");
 
 const { getAllUsers } = require("./controllers/users.controllers.js");
-const { getLessonsByStudentId } = require('./controllers/getLessonsByStudentId.js');
+const {
+  getLessonsByStudentId,
+} = require("./controllers/getLessonsByStudentId.js");
 
 const app = express();
 
@@ -14,7 +16,7 @@ const apiRouter = require("./routes");
 
 app.get("/api/users", getAllUsers);
 
-app.get("/api/lessons/:student_id", getLessonsByStudentId)
+app.get("/api/lessons/:student_id", getLessonsByStudentId);
 
 // router
 app.use("/api", apiRouter);

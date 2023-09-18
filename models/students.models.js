@@ -10,7 +10,7 @@ const fetchStudentAssignments = (student_id) => {
     )
     .then(({ rows }) => {
       if (rows.length === 0) {
-        return Promise.reject({ status: 404, msg: "Resource not found" });
+        return Promise.reject({ status: 404, msg: "Not found" });
       }
 
       return rows;
