@@ -2,13 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const { getAllUsers } = require('./controllers/users.controllers.js');
 
-/*
-const articles = require('./routes/articles.routes');
-const comments = require('./routes/comments.routes');
-const endpoints = require('./routes/endpoints.routes');
-const topics = require('./routes/topics.routes');
-const users = require('./routes/users.routes');
-*/
 const {
   generalError,
   Error400,
@@ -25,13 +18,6 @@ app.use(cors());
 app.use(express.json());
 app.get("/api/lessons/:student_id", getLessonsByStudentId)
 
-/*
-app.use('/api/articles', articles);
-app.use('/api/comments', comments);
-app.use('/api', endpoints);
-app.use('/api/topics', topics);
-app.use('/api/users', users);
-*/
 app.all('*', pathError);
 app.use(generalError);
 app.use(Error400);
