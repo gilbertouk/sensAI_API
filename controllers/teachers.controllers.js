@@ -1,5 +1,8 @@
+const { getAssignDataByTeacherClass } = require("../models/teachers.models");
 
 
 exports.getAssignmentsByTeacherClassId = (req, res, next) => {
-    res.status(200).send({});
+    getAssignDataByTeacherClass().then((data)=> {
+        res.status(200).send({});
+    })
 }
