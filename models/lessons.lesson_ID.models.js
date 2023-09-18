@@ -1,8 +1,8 @@
 const db = require('../db/connection.js');
 
-const fetchLessonByID = (id) => {
+const fetchLessonByID = (lesson_id) => {
     return db
-    .query(`SELECT * FROM lessons WHERE id = $1;`, [id])
+    .query(`SELECT * FROM lessons WHERE id = $1;`, [lesson_id])
     .then(({ rows }) => {
         const lesson = rows[0];
         if (!lesson) {
