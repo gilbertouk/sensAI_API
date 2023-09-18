@@ -742,7 +742,6 @@ describe("/api/users", () => {
         return request(app).get('/api/users').expect(200)
         .then((res) => {
             const {users} = res.body
-            console.log(users, "line 14")
             expect(Array.isArray(users)).toEqual(true)
             expect(users.length).toEqual(102);
             expect(users).toEqual(users);
@@ -766,7 +765,6 @@ describe("/api/users", () => {
         return request(app).get('/api/users').expect(200)
         .then((res) => {
             const {users} = res.body
-            console.log(users, "line 37")
             expect(users[0].id).toEqual(1);
             expect(users[0].name).toEqual('User1');
             expect(users[0].surname).toEqual('Surname1');
@@ -791,4 +789,60 @@ describe("/api/users", () => {
             expect(body.msg).toBe('not found');
           });
       });
+});
+describe("GET /api/lessons/:id", () => {
+  test("200 GET: when passed an object returns an object", () => {
+      return request(app).get('/api/lessons/1').expect(200)
+      .then((res) => {
+          let {lessons} = res.body;
+          expect(typeof lessons).toEqual('object');
+      })
+  })
+  test("200 GET: responds with an article object by article ID", () => {
+      const result = {
+        id: 1,
+        title: "English: Shakespeare",
+        body: "An exploration of Shakespeare, his plays and books",
+        teacher_id: 101,
+        created_at: "2021-01-01T00:00:00.000Z"
+      }   
+      return request(app).get('/api/lessons/1').expect(200)
+      .then((res) => {
+          const {lessons} = res.body;
+          expect(lessons).toMatchObject(result)
+      })
+  })
+  test("200 GET: responds with an lesson object by lesson_ID with properties id, title, body, teacher_id, created_at", () => {  
+      return request(app).get('/api/lessons/1').expect(200)
+      .then((res) => {
+          const {lessons} = res.body;
+          expect(typeof lessons).toBe("object")
+          expect(lessons).toEqual(
+                    expect.objectContaining({
+                      id: expect.any(Number),
+                      title: expect.any(String),
+                      body: expect.any(String),
+                      teacher_id: expect.any(Number),
+                      created_at: expect.any(String)
+                    })
+                  );
+              })
+          })
+
+  test('status:400, responds with an error message when passed a invalid input_id input', () => {
+          return request(app)
+            .get('/api/lessons/banana')
+            .expect(400)
+            .then(({ body }) => {
+              expect(body.msg).toBe('Invalid input');
+            });
+        });
+  test('status:404, responds with an error message when a valid input_ID which does not exist on the database', () => {
+          return request(app)
+            .get('/api/lessons/900')
+            .expect(404)
+            .then(({ body }) => {
+              expect(body.msg).toBe('not found');
+            });
+        });
 });
