@@ -4,8 +4,14 @@ const fetchAllUsers = () => {
     return db
     .query(`SELECT * FROM users;`)
     .then(({ rows }) => {
+        if (!rows) {
+            return Promise.reject({
+                status: 404,
+                msg: 'Not found',
+            })
+        }
         return rows;
-    })
+    });
 };
 
 module.exports = {fetchAllUsers };

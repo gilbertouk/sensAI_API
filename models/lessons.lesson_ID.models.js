@@ -8,7 +8,7 @@ const fetchLessonByID = (lesson_id) => {
         if (!lesson) {
             return Promise.reject({
                 status: 404,
-                msg: 'not found',
+                msg: 'Not found',
             })
         }
         return lesson

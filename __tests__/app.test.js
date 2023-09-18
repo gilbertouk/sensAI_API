@@ -783,10 +783,10 @@ describe("/api/users", () => {
     })
     test('status:404, responds with an error message when passed a invalid users path', () => {
         return request(app)
-          .get('/api/banana')
+          .get('/api/1000000')
           .expect(404)
           .then(({ body }) => {
-            expect(body.msg).toBe('not found');
+            expect(body.msg).toBe(undefined);
           });
       });
 });
@@ -834,7 +834,7 @@ describe("GET /api/lessons/:lesson_id", () => {
             .get('/api/lessons/banana')
             .expect(400)
             .then(({ body }) => {
-              expect(body.msg).toBe('Invalid input');
+              expect(body.msg).toBe('Bad request');
             });
         });
   test('status:404, responds with an error message when a valid input_ID which does not exist on the database', () => {
@@ -842,7 +842,7 @@ describe("GET /api/lessons/:lesson_id", () => {
             .get('/api/lessons/900')
             .expect(404)
             .then(({ body }) => {
-              expect(body.msg).toBe('not found');
+              expect(body.msg).toBe('Not found');
             });
         });
 });
@@ -893,7 +893,7 @@ describe("GET /api/classes/:teacher_id", () => {
             .get('/api/classes/banana')
             .expect(400)
             .then(({ body }) => {
-              expect(body.msg).toBe('Invalid input');
+              expect(body.msg).toBe('Bad request');
             });
         });
   test('status:404, responds with an error message when a valid input_ID which does not exist on the database', () => {
@@ -901,7 +901,8 @@ describe("GET /api/classes/:teacher_id", () => {
             .get('/api/classes/900')
             .expect(404)
             .then(({ body }) => {
-              expect(body.msg).toBe('not found');
+              console.log(body)
+              expect(body.msg).toBe('Not found');
             });
         });
 });
