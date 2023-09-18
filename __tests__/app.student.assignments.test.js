@@ -58,7 +58,7 @@ describe("Endpoint /api/student/:student_id/assignments", () => {
         .get("/api/student/3000/assignments")
         .expect(404)
         .then(({ body }) => {
-          expect(body.msg).toBe("Resource not found");
+          expect(body.msg).toBe("Not found");
         });
     });
 
