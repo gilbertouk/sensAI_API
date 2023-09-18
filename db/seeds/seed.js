@@ -1,5 +1,5 @@
-const format = require('pg-format');
-const db = require('../connection');
+const format = require("pg-format");
+const db = require("../connection");
 
 const seed = async ({
   assignmentsData,
@@ -11,13 +11,13 @@ const seed = async ({
   usersData,
 }) => {
   try {
-    await db.query('DROP TABLE IF EXISTS users_assignments;');
-    await db.query('DROP TABLE IF EXISTS assignments;');
-    await db.query('DROP TABLE IF EXISTS users_lessons;');
-    await db.query('DROP TABLE IF EXISTS lessons;');
-    await db.query('DROP TABLE IF EXISTS classes_users;');
-    await db.query('DROP TABLE IF EXISTS classes;');
-    await db.query('DROP TABLE IF EXISTS users;');
+    await db.query("DROP TABLE IF EXISTS users_assignments;");
+    await db.query("DROP TABLE IF EXISTS assignments;");
+    await db.query("DROP TABLE IF EXISTS users_lessons;");
+    await db.query("DROP TABLE IF EXISTS lessons;");
+    await db.query("DROP TABLE IF EXISTS classes_users;");
+    await db.query("DROP TABLE IF EXISTS classes;");
+    await db.query("DROP TABLE IF EXISTS users;");
 
     await db.query(`
       CREATE TABLE users (
@@ -91,10 +91,9 @@ const seed = async ({
       );
     `);
     const insertUsersQueryStr = format(
-      'INSERT INTO users (id, name, surname, email, role, created_at, disability) VALUES %L RETURNING *;',
+      "INSERT INTO users ( name, surname, email, role, created_at, disability) VALUES %L RETURNING *;",
       usersData.map(
-        ({ id, name, surname, email, role, created_at, disability }) => [
-          id,
+        ({ name, surname, email, role, created_at, disability }) => [
           name,
           surname,
           email,
@@ -107,10 +106,9 @@ const seed = async ({
     await db.query(insertUsersQueryStr);
 
     const insertClassesQueryStr = format(
-      'INSERT INTO classes (id, name, age_group, subject, created_at, exam_board) VALUES %L RETURNING *;',
+      "INSERT INTO classes (name, age_group, subject, created_at, exam_board) VALUES %L RETURNING *;",
       classesData.map(
-        ({ id, name, age_group, subject, created_at, exam_board }) => [
-          id,
+        ({ name, age_group, subject, created_at, exam_board }) => [
           name,
           age_group,
           subject,
@@ -122,9 +120,8 @@ const seed = async ({
     await db.query(insertClassesQueryStr);
 
     const insertlessonsDataQueryStr = format(
-      'INSERT INTO lessons (id, title, body, teacher_id, created_at) VALUES %L RETURNING *;',
-      lessonsData.map(({ id, title, body, teacher_id, created_at }) => [
-        id,
+      "INSERT INTO lessons ( title, body, teacher_id, created_at) VALUES %L RETURNING *;",
+      lessonsData.map(({ title, body, teacher_id, created_at }) => [
         title,
         body,
         teacher_id,
@@ -134,10 +131,9 @@ const seed = async ({
     await db.query(insertlessonsDataQueryStr);
 
     const insertassignmentsDataQueryStr = format(
-      'INSERT INTO assignments (id, title, body, teacher_id, created_at, due_date) VALUES %L RETURNING *;',
+      "INSERT INTO assignments ( title, body, teacher_id, created_at, due_date) VALUES %L RETURNING *;",
       assignmentsData.map(
-        ({ id, title, body, teacher_id, created_at, due_date }) => [
-          id,
+        ({ title, body, teacher_id, created_at, due_date }) => [
           title,
           body,
           teacher_id,
@@ -148,19 +144,14 @@ const seed = async ({
     );
     await db.query(insertassignmentsDataQueryStr);
     const insertusers_lessonsDataQueryStr = format(
-      'INSERT INTO users_lessons (id, lesson_id, user_id) VALUES %L RETURNING *;',
-      users_lessonsData.map(({ id, lesson_id, user_id }) => [
-        id,
-        lesson_id,
-        user_id,
-      ])
+      "INSERT INTO users_lessons (lesson_id, user_id) VALUES %L RETURNING *;",
+      users_lessonsData.map(({ lesson_id, user_id }) => [lesson_id, user_id])
     );
     await db.query(insertusers_lessonsDataQueryStr);
     const insertusers_assignmentsDataQueryStr = format(
-      'INSERT INTO users_assignments (id, assignment_id, user_id, work, submit_date, feedback, mark) VALUES %L RETURNING *;',
+      "INSERT INTO users_assignments ( assignment_id, user_id, work, submit_date, feedback, mark) VALUES %L RETURNING *;",
       users_assignmentsData.map(
-        ({ id, assignment_id, user_id, work, submit_date, feedback, mark }) => [
-          id,
+        ({ assignment_id, user_id, work, submit_date, feedback, mark }) => [
           assignment_id,
           user_id,
           work,
@@ -172,16 +163,12 @@ const seed = async ({
     );
     await db.query(insertusers_assignmentsDataQueryStr);
     const insertclasses_usersDataDataQueryStr = format(
-      'INSERT INTO classes_users (id, class_id, user_id ) VALUES %L RETURNING *;',
-      classes_usersData.map(({ id, class_id, user_id }) => [
-        id,
-        class_id,
-        user_id,
-      ])
+      "INSERT INTO classes_users ( class_id, user_id ) VALUES %L RETURNING *;",
+      classes_usersData.map(({ class_id, user_id }) => [class_id, user_id])
     );
     await db.query(insertclasses_usersDataDataQueryStr);
   } catch (error) {
-    console.error('Error creating tables:', error);
+    console.error("Error creating tables:", error);
     throw error;
   }
 };
