@@ -37,5 +37,22 @@
         }
       ]
     }
+  },
+  "GET /api/student/:student_id/assignments/:assignment_id": {
+    "description": "serves an array of a specific student assignment",
+    "queries": [],
+    "exampleResponse": {
+      "assignment": [
+        {
+          "id": 3,
+          "assignment_id": 1,
+          "user_id": 3,
+          "work": null,
+          "submit_date": null,
+          "feedback": null,
+          "mark": null
+        }
+      ]
+    }
   }
 }
