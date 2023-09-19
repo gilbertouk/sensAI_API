@@ -5,7 +5,6 @@ const { getAllUsers } = require("./controllers/users.controllers.js");
 const {
   getLessonsByStudentId,
 } = require("./controllers/getLessonsByStudentId.js");
-const { getAssignmentsByTeacherClassId } = require("./controllers/teachers.controllers.js")
 
 const app = express();
 
@@ -19,7 +18,6 @@ app.get("/api/users", getAllUsers);
 
 app.get("/api/lessons/:student_id", getLessonsByStudentId);
 
-app.get("/api/classes/:teacher_id/:class_id/assignments", getAssignmentsByTeacherClassId)
 
 // router
 app.use("/api", apiRouter);

@@ -7,9 +7,9 @@ const data = require("../db/data/test-data/index.js");
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe("GET /api/classes/:teacher_id/:class_id/assignments", ()=> {
+describe("GET /api/assignments/:teacher_id/:class_id", ()=> {
     test("200: Responds with array of assignment objects", ()=> {
-        return request(app).get("/api/classes/101/1/assignments").expect(200).then(({body})=> {
+        return request(app).get("/api/assignments/101/1").expect(200).then(({body})=> {
             const {assignments} = body;
             
             const expected = {
@@ -28,28 +28,28 @@ describe("GET /api/classes/:teacher_id/:class_id/assignments", ()=> {
         })
     })
     test("400: Returns Bad request when given invalid teacher_id", ()=> {
-        return request(app).get("/api/classes/test/1/assignments").expect(400).then(({body})=> {
+        return request(app).get("/api/assignments/test/1").expect(400).then(({body})=> {
             const {msg} = body;
 
             expect(msg).toEqual("Bad request");
         })
     })
     test("400: Returns Bad request when given invalid class_id", ()=> {
-        return request(app).get("/api/classes/101/test/assignments").expect(400).then(({body})=> {
+        return request(app).get("/api/assignments/101/test").expect(400).then(({body})=> {
             const {msg} = body;
 
             expect(msg).toEqual("Bad request");
         })
     })
     test("404: Returns Not found when given non-existent teacher_id", ()=> {
-        return request(app).get("/api/classes/1000000/1/assignments").expect(404).then(({body})=> {
+        return request(app).get("/api/assignments/1000000/1").expect(404).then(({body})=> {
             const {msg} = body;
 
             expect(msg).toEqual("Not found");
         })
     })
     test("404: Returns Not found when given non-existent class_id", ()=> {
-        return request(app).get("/api/classes/101/2000/assignments").expect(404).then(({body})=> {
+        return request(app).get("/api/assignments/101/2000").expect(404).then(({body})=> {
             const {msg} = body;
 
             expect(msg).toEqual("Not found");
