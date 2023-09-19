@@ -69,5 +69,21 @@
         }
       ]
     }
+  },
+  "PATCH /api/student/:student_id/assignments/:assignment_id": {
+    "description": "serves the updated assignment object ",
+    "queries": [],
+    "exampleBodyRequest": { "work": "string" },
+    "exampleResponse": {
+      "assignment": {
+        "id": 3,
+        "assignment_id": 1,
+        "user_id": 3,
+        "work": "string",
+        "submit_date": "2023-09-19T09:58:42.078Z",
+        "feedback": null,
+        "mark": null
+      }
+    }
   }
 }
