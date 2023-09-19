@@ -72,3 +72,68 @@ describe("Endpoint /api/student/:student_id/assignments", () => {
     });
   });
 });
+
+describe("Endpoint /api/student/:student_id/assignments/:assignment_id", () => {
+  describe("controller: getStudentAssignmentByAssignmentId", () => {
+    test("Method GET: 200 status", () => {
+      return request(app).get("/api/student/3/assignments/1").expect(200);
+    });
+
+    test("Method GET: should return 200 status with correct responds data", () => {
+      return request(app)
+        .get("/api/student/3/assignments/1")
+        .then(({ body }) => {
+          const expectStudentAssignment = {
+            assignment: [
+              {
+                id: 3,
+                assignment_id: 1,
+                user_id: 3,
+                work: null,
+                submit_date: null,
+                feedback: null,
+                mark: null,
+              },
+            ],
+          };
+          expect(body).toMatchObject(expectStudentAssignment);
+        });
+    });
+
+    test("Method GET: should return 404 status when given student_id does not exists", () => {
+      return request(app)
+        .get("/api/student/3000/assignments/1")
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.msg).toBe("Not found");
+        });
+    });
+
+    test("Method GET: should return 404 status when given assignment_id does not exists", () => {
+      return request(app)
+        .get("/api/student/3/assignments/1000")
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.msg).toBe("Not found");
+        });
+    });
+
+    test("Method GET: should return 400 status when given invalid student_id", () => {
+      return request(app)
+        .get("/api/student/abc/assignments/1")
+        .expect(400)
+        .then(({ body }) => {
+          expect(body.msg).toBe("Bad request");
+        });
+    });
+
+    test("Method GET: should return 400 status when given invalid assignment_id", () => {
+      return request(app)
+        .get("/api/student/3/assignments/abc")
+        .expect(400)
+        .then(({ body }) => {
+          expect(body.msg).toBe("Bad request");
+        });
+    });
+  });
+});

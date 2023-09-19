@@ -17,4 +17,23 @@ const fetchStudentAssignments = (student_id) => {
     });
 };
 
-module.exports = { fetchStudentAssignments };
+const fetchStudentAssignmentByAssignmentId = (student_id, assignment_id) => {
+  return db
+    .query(
+      `SELECT id, assignment_id, user_id, work, submit_date, feedback, mark 
+      FROM users_assignments WHERE user_id = $1 AND assignment_id = $2;`,
+      [student_id, assignment_id]
+    )
+    .then(({ rows }) => {
+      if (rows.length === 0) {
+        return Promise.reject({ status: 404, msg: "Not found" });
+      }
+
+      return rows;
+    });
+};
+
+module.exports = {
+  fetchStudentAssignments,
+  fetchStudentAssignmentByAssignmentId,
+};
