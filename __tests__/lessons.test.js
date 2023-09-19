@@ -7,7 +7,7 @@ const data = require("../db/data/test-data/");
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe("GET /api/classes/:teacher_id/:class_id/lessons", () => {
+describe("GET /api/lessons/:teacher_id/:class_id", () => {
   describe("controller: getLessonsByTeacherid", () => {
     test("Method GET: 200 status", () => {
       return request(app).get("/api/lessons/101/2").expect(200);
@@ -15,7 +15,7 @@ describe("GET /api/classes/:teacher_id/:class_id/lessons", () => {
 
     test("Method GET: should return 200 status with correct responds data", () => {
       return request(app)
-        .get("/api/lessons/101/2/")
+        .get("/api/lessons/101/2")
         .then(({ body }) => {
           const expectLessons = {
             lessons: [
@@ -40,23 +40,5 @@ describe("GET /api/classes/:teacher_id/:class_id/lessons", () => {
           expect(body).toMatchObject(expectLessons);
         });
     });
-
-    // test("Method GET: should return 404 status when given student_id does not exists", () => {
-    //   return request(app)
-    //     .get("/api/student/3000/assignments")
-    //     .expect(404)
-    //     .then(({ body }) => {
-    //       expect(body.msg).toBe("Resource not found");
-    //     });
-    // });
-
-    // test("Method GET: should return 400 status when given invalid student_id", () => {
-    //   return request(app)
-    //     .get("/api/student/abc/assignments")
-    //     .expect(400)
-    //     .then(({ body }) => {
-    //       expect(body.msg).toBe("Bad request");
-    //     });
-    // });
   });
 });
