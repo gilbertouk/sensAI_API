@@ -2,6 +2,7 @@ const assignments = require("../db/data/test-data/assignments");
 const {
   fetchStudentAssignments,
   fetchStudentAssignmentByAssignmentId,
+  updateStudentAssignment,
 } = require("../models/students.models");
 
 const getStudentAssignments = (req, res, next) => {
@@ -26,4 +27,20 @@ const getStudentAssignmentByAssignmentId = (req, res, next) => {
     });
 };
 
-module.exports = { getStudentAssignments, getStudentAssignmentByAssignmentId };
+const patchStudentAssignment = (req, res, next) => {
+  const { student_id, assignment_id } = req.params;
+  const { work } = req.body;
+  updateStudentAssignment(student_id, assignment_id, work)
+    .then((assignment) => {
+      res.status(200).send({ assignment });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+module.exports = {
+  getStudentAssignments,
+  getStudentAssignmentByAssignmentId,
+  patchStudentAssignment,
+};
