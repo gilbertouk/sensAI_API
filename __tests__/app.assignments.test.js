@@ -56,3 +56,45 @@ describe("GET /api/assignments/:teacher_id/:class_id", ()=> {
         })
     })
 })
+
+describe("GET /api/assignments/:teacher_id", ()=> {
+    test("200: Returns status code 200", ()=> {
+        return request(app).get("/api/assignments/101").expect(200);
+    })
+    test("200: Returns array of student assignment objects", ()=> {
+        return request(app).get("/api/assignments/101").expect(200).then(({body})=> {
+            const { assignments } = body;
+
+            const expected = {
+                id: expect.any(Number),
+                assignment_id: expect.any(Number),
+                user_id: expect.any(Number),
+                work: (expect.any(Object) || expect.any(String)),
+                submit_date: (expect.any(Object) || expect.any(String)),
+                feedback: (expect.any(Object) || expect.any(String)),
+                mark: (expect.any(Object) || expect.any(String)),
+                class_id: expect.any(Number)
+            }
+            
+            assignments.forEach(assignment => {
+                expect(assignment).toMatchObject(expected);
+            })
+        })
+    })
+    test("404: Returns Not found with non-existent teacher_id", ()=> {
+        return request(app).get("/api/assignments/10000").expect(404).then(({body})=> {
+            const { msg } = body;
+
+            expect(msg).toEqual("Not found");
+        })
+
+    })
+    test("400: Returns Bad request with invalid teacher_id", ()=> {
+        return request(app).get("/api/assignments/test").expect(400).then(({body})=> {
+            const { msg } = body;
+
+            expect(msg).toEqual("Bad request");
+        })
+
+    })
+})
