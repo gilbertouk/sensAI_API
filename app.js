@@ -19,6 +19,7 @@ app.get('/api/lessons/:lesson_id', getLessonByID)
 app.get('/api/classes/:teacher_id', getClassesByTeacherID)
 app.post('/api/assignments/:teacher_id/:class_id', postAssignmentsByTeacherIDAndClassID)
 
+
 // router
 app.use("/api", apiRouter);
 
