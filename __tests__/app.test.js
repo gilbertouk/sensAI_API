@@ -308,3 +308,108 @@ describe("GET /api/classes/:teacher_id", () => {
       });
   });
 });
+describe("post /api/assignments/:teacher_id/:class_id", () => {
+  test("200 post: when sent teacher_id and class_id params as well as sent title, body and due_date updates assignment database with new assignment with ID, title, body, teacher_id, created_at and due_date", () => {
+  return request(app).post('/api/assignments/101/1').send({title: 'test title', body: 'test body', due_date: '2023-09-19'}).expect(200)
+  .then(() => {
+    return db
+    .query(`SELECT * FROM assignments WHERE id = 9`)
+    .then(({rows}) => {
+      expect(typeof rows[0]).toBe('object')
+      expect(rows[0]).toEqual(
+          expect.objectContaining({
+            id: 9,
+            title: 'test title',
+            body: 'test body',
+            teacher_id: 101,
+            created_at: expect.any(Object),
+            due_date: expect.any(Object)
+          })
+          )
+      })
+    })
+  })
+  test("200 post: when sent teacher_id and class_id params as well as sent title, body and due_date updates users_assignments database with new user assignment with id, assignment_id, user_id, work, submit_date, feedback and mark.", () => {
+  return request(app).post('/api/assignments/101/1').send({title: 'test title', body: 'test body', due_date: '2023-09-19'}).expect(200)
+  .then(() => {
+    return db
+    .query(`SELECT * FROM users_assignments WHERE assignment_id = 9`)
+    .then(({rows}) => {
+      expect(Array.isArray(rows)).toBe(true)
+      expect(typeof rows[0]).toBe('object')
+      expect(rows.length).toBe(25)
+      rows.forEach((userAssignment) => {
+      expect(userAssignment).toEqual(
+          expect.objectContaining({
+            id: expect.any(Number),
+            assignment_id: 9,
+            user_id: expect.any(Number),
+            work: null,
+            submit_date: null,
+            feedback: null,
+            mark: null            
+          })
+          )
+        })
+      })
+    })
+  })
+  test("200 post: when sent teacher_id and class_id params as well as sent title, body and due_date updates users_assignments database with correct values for keys", () => {
+    return request(app).post('/api/assignments/101/1').send({title: 'test title', body: 'test body', due_date: '2023-09-19'}).expect(200)
+    .then(() => {
+      return db
+      .query(`SELECT * FROM users_assignments WHERE assignment_id = 9`)
+      .then(({rows}) => {
+        const result1 =         {
+          id: 201,
+          assignment_id: 9,
+          user_id: 1,
+          work: null,
+          submit_date: null,
+          feedback: null,
+          mark: null
+        };
+        const result2 =         {
+          id: 225,
+          assignment_id: 9,
+          user_id: 25,
+          work: null,
+          submit_date: null,
+          feedback: null,
+          mark: null
+        };
+        expect(typeof rows[0]).toBe('object')
+        expect(typeof rows[24]).toBe('object')
+        expect(rows[0]).toMatchObject(result1)
+        expect(rows[24]).toMatchObject(result2)      
+        })
+      })
+    })
+  test('status:404 post, responds with an error message when passed a invalid teacher_id input', () => {
+      return request(app)
+        .post('/api/assignments//1')
+        .send({title: 'test title', body: 'test body', due_date: '2023-09-19'})
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.msg).toBe('Not found');
+        });
+  })
+  test('status:404 post, responds with an error message when a invalid class_id', () => {
+  return request(app)
+    .post('/api/assignments/101/')
+    .send({title: 'test title', body: 'test body', due_date: '2023-09-19'})
+    .expect(404)
+    .then(({ body }) => {
+      expect(body.msg).toBe('Not found');
+    });
+  })
+  test('status:400 post, responds with an error message when given invalid body request', () => {
+    return request(app)
+      .post('/api/assignments/101/1')
+      .send({})
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  })
+})
