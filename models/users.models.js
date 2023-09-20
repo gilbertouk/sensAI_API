@@ -35,12 +35,9 @@ const insertUserByEmail = (email) => {
 };
 
 const insertUser = (user) => {
-  //return db
-    //.query("INSERT INTO users (email) VALUES ($1) RETURNING *", [user])
     const insertQuery = format (`INSERT INTO users (email, name, surname, disability) 
     VALUES %L 
     RETURNING *`, [[user.email, user.name, user.surname, user.disability]]);
-    console.log(insertQuery)
     return db.query(insertQuery)
     .then(({ rows }) => {
         if (!rows) {
