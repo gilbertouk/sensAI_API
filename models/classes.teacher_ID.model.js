@@ -8,7 +8,6 @@ const fetchClassesByTeacherID = (teacher_id) => {
     `, [teacher_id])
     .then(({ rows }) => {
         const classes = rows;
-
         if (classes.length === 0) {
             return Promise.reject({
                 status: 404,

@@ -43,10 +43,6 @@ const postUserByEmail = (req, res, next) => {
 
 const postUser = (req, res, next) => {
   const user = req.body;
-  // if (!email) {
-  //   return res.status(400).send({ msg: "Bad Request" });
-  // }
-  console.log("test");
   insertUser(user)
     .then((user) => {
       res.status(201).send({ user });
