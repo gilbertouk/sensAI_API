@@ -99,4 +99,8 @@ module.exports = [
   { id: 98, user_id: 98, class_id: 4 },
   { id: 99, user_id: 99, class_id: 4 },
   { id: 100, user_id: 100, class_id: 4 },
+  { id: 101, user_id: 101, class_id: 1 },
+  { id: 102, user_id: 101, class_id: 2 },
+  { id: 103, user_id: 102, class_id: 3 },
+  { id: 104, user_id: 102, class_id: 4 },
 ];
