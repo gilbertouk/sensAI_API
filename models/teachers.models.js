@@ -25,6 +25,23 @@ exports.getAssignDataByTeacherClass = (teacher_id, class_id) => {
     });
 };
 
+exports.deleteUserAssignmentByUserIdAndAssignmentId = (
+  assignment_id,
+  user_id
+) => {
+  return db
+    .query(
+      `DELETE FROM users_assignments WHERE assignment_id = $1 AND user_id = $2;`,
+      [assignment_id, user_id]
+    )
+    .then((response) => {
+      if (response.rowCount === 0) {
+        return Promise.reject({ status: 404, msg: "Not found" });
+      }
+      return response.rows;
+    });
+};
+
 exports.getAssignmentData = (teacher_id) => {
   return db
     .query(
