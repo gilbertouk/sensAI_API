@@ -1,4 +1,4 @@
-const { getAssignDataByTeacherClass } = require("../models/teachers.models");
+const { getAssignDataByTeacherClass, getAssignmentData } = require("../models/teachers.models");
 
 
 exports.getAssignmentsByTeacherClassId = (req, res, next) => {
@@ -9,4 +9,14 @@ exports.getAssignmentsByTeacherClassId = (req, res, next) => {
     }).catch((err) => {
         next(err);
     })
+}
+
+exports.getAssignments = (req, res, next) => {
+    const { teacher_id } = req.params
+    getAssignmentData(teacher_id).then((assignments) => {
+        res.status(200).send({assignments});
+    }).catch((err)=> {
+        next(err);
+    })
+    
 }
