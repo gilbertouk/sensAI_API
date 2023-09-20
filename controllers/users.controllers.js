@@ -2,6 +2,7 @@ const {
   fetchAllUsers,
   selectUserByEmail,
   insertUserByEmail,
+  insertUser,
 } = require("../models/users.models.js");
 
 const getAllUsers = (req, res, next) => {
@@ -40,4 +41,22 @@ const postUserByEmail = (req, res, next) => {
     });
 };
 
-module.exports = { getAllUsers, getUserByEmail, postUserByEmail };
+const postUser = (req, res, next) => {
+  const user = req.body;
+  // if (!email) {
+  //   return res.status(400).send({ msg: "Bad Request" });
+  // }
+  console.log("test");
+  insertUser(user)
+    .then((user) => {
+      res.status(201).send({ user });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+
+module.exports = { getAllUsers, getUserByEmail, postUserByEmail, postUser };
+
+
