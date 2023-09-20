@@ -20,6 +20,9 @@ const {
 const {
   postLessonsByTeacherIdAndClassId,
 } = require("./controllers/lessons.controllers.js");
+const {
+  deleteAssignmentsByAssignmentIdAndUserId,
+} = require("./controllers/teachers.controllers");
 
 const apiRouter = require("./routes");
 
@@ -34,6 +37,10 @@ app.post(
 app.post(
   "/api/lessons/:teacher_id/:class_id",
   postLessonsByTeacherIdAndClassId
+);
+app.delete(
+  "/api/assignments/:assignment_id/:user_id",
+  deleteAssignmentsByAssignmentIdAndUserId
 );
 
 // router
