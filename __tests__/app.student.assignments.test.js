@@ -93,6 +93,11 @@ describe("Endpoint /api/student/:student_id/assignments/:assignment_id", () => {
                 submit_date: null,
                 feedback: null,
                 mark: null,
+                title: "English: Shakespeare assessment",
+                body: "An assessment on Shakespeare, his plays and books",
+                teacher_id: 101,
+                created_at: "2021-11-11T00:00:00.000Z",
+                due_date: "2021-10-10T23:00:00.000Z",
               },
             ],
           };
