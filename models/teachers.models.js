@@ -25,7 +25,7 @@ exports.getAssignDataByTeacherClass = (teacher_id, class_id) => {
     });
 };
 
-exports.deleteUserAssignmentByUserIdAndAssignmentId = (
+exports.removeUserAssignmentByUserIdAndAssignmentId = (
   assignment_id,
   user_id
 ) => {
@@ -65,4 +65,34 @@ exports.getAssignmentData = (teacher_id) => {
       }
       return rows;
     });
+};
+
+exports.removeAssignmentsByAssignmentId = async (assignment_id) => {
+  try {
+    const deleteUsersAssignment = await db.query(
+      "DELETE FROM users_assignments WHERE assignment_id = $1",
+      [assignment_id]
+    );
+
+    if (deleteUsersAssignment.rowCount === 0) {
+      throw new Error("Not found");
+    }
+
+    const deleteAssignment = await db.query(
+      `DELETE FROM assignments WHERE id = $1;`,
+      [assignment_id]
+    );
+
+    if (deleteAssignment.rowCount === 0) {
+      throw new Error("Not found");
+    }
+
+    return;
+  } catch (err) {
+    if (err.message === "Not found") {
+      return Promise.reject({ status: 404, msg: "Not found" });
+    }
+
+    return Promise.reject(err);
+  }
 };

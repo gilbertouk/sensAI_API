@@ -71,7 +71,7 @@
     }
   },
   "PATCH /api/student/:student_id/assignments/:assignment_id": {
-    "description": "serves the updated assignment object ",
+    "description": "serves the updated assignment object",
     "queries": [],
     "exampleBodyRequest": { "work": "string" },
     "exampleResponse": {
@@ -85,5 +85,36 @@
         "mark": null
       }
     }
+  },
+  "POST /api/assignments/:teacher_id/:class_id": {
+    "description": "create an assignment and assign it to students by class",
+    "queries": [],
+    "exampleBodyRequest": {
+      "title": "Assignment title",
+      "body": "Assignment body",
+      "due_date": "2023-09-28"
+    },
+    "exampleResponse": {}
+  },
+  "POST /api/lessons/:teacher_id/:class_id": {
+    "description": "create an lesson and assign it to students by class",
+    "queries": [],
+    "exampleBodyRequest": {
+      "title": "Lesson title",
+      "body": "Lesson body"
+    },
+    "exampleResponse": {}
+  },
+  "DELETE /api/assignments/:assignment_id/:user_id": {
+    "description": "delete an user assignment by assignment_id and user_id",
+    "queries": [],
+    "exampleBodyRequest": {},
+    "exampleResponse": {}
+  },
+  "DELETE /api/assignments/:assignment_id": {
+    "description": "delete an assignment by assignment_id",
+    "queries": [],
+    "exampleBodyRequest": {},
+    "exampleResponse": {}
   }
 }
