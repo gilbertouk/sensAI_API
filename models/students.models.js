@@ -20,8 +20,12 @@ const fetchStudentAssignments = (student_id) => {
 const fetchStudentAssignmentByAssignmentId = (student_id, assignment_id) => {
   return db
     .query(
-      `SELECT id, assignment_id, user_id, work, submit_date, feedback, mark 
-      FROM users_assignments WHERE user_id = $1 AND assignment_id = $2;`,
+      `SELECT users_assignments.id, users_assignments.assignment_id, users_assignments.user_id, 
+      users_assignments.work, users_assignments.submit_date, users_assignments.feedback, 
+      users_assignments.mark, assignments.title, assignments.body, assignments.teacher_id, 
+      assignments.created_at, assignments.due_date FROM users_assignments 
+      LEFT JOIN assignments ON assignments.id = users_assignments.assignment_id
+      WHERE user_id = $1 and assignment_id = $2;`,
       [student_id, assignment_id]
     )
     .then(({ rows }) => {
