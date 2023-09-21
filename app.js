@@ -27,6 +27,9 @@ const {
 const {
   deleteLessonByLessonIdAndUserId
 } = require("./controllers/lesson.lessonID.userID.controller.js");
+const {
+  deleteLessonByLessonId
+} = require("./controllers/lesson.lessonID.controller.js");
 
 const apiRouter = require("./routes");
 
@@ -51,6 +54,11 @@ app.delete("/api/assignments/:assignment_id", deleteAssignmentsByAssignmentId);
 app.delete(
   "/api/lessons/:lesson_id/:user_id",
   deleteLessonByLessonIdAndUserId
+);
+
+app.delete(
+  "/api/lessons/:lesson_id",
+  deleteLessonByLessonId
 );
 
 // router
