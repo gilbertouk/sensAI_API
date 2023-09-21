@@ -518,7 +518,7 @@ describe("post /api/lessons/:teacher_id/:class_id", () => {
 });
 
 describe("Delete /api/lessons/:lesson_id/:user_id", () => {
-  test.only("204 Delete lesson by assignment_id and user_id", () => {
+  test("204 Delete lesson by assignment_id and user_id", () => {
     return request(app).delete("/api/lessons/1/1").expect(204);
   });
 
@@ -575,18 +575,18 @@ describe("Delete /api/lessons/:lesson_id/:user_id", () => {
       });
   });
 });
-/*
-describe("Delete /api/assignments/:assignment_id", () => {
-  test("204 Delete assignment by assignment_id", () => {
-    return request(app).delete("/api/assignments/1").expect(204);
+
+describe("Delete /api/lessons/:lesson_id", () => {
+  test("204 Delete lesson by lesson_id", () => {
+    return request(app).delete("/api/lessons/1").expect(204);
   });
 
-  test("204 Delete assignment by assignment_id and check assignments after", () => {
+  test("204 Delete lesson by lesson_id and check lessons after", () => {
     return request(app)
-      .delete("/api/assignments/1")
+      .delete("/api/lessons/1")
       .expect(204)
       .then(() => {
-        return db.query(`SELECT * FROM assignments;`).then(({ rows }) => {
+        return db.query(`SELECT * FROM lessons;`).then(({ rows }) => {
           let isDeleted = true;
           rows.forEach((row) => {
             if (row.id === 1) {
@@ -598,22 +598,21 @@ describe("Delete /api/assignments/:assignment_id", () => {
       });
   });
 
-  test("404 Delete when given assignment does not exist", () => {
+  test("404 Delete when given lesson does not exist", () => {
     return request(app)
-      .delete("/api/assignments/10000")
+      .delete("/api/lessons/10000")
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe("Not found");
       });
   });
 
-  test("400 Delete when given invalid assignment_id", () => {
+  test("400 Delete when given invalid lesson_id", () => {
     return request(app)
-      .delete("/api/assignments/invalid")
+      .delete("/api/lessons/invalid")
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Bad request");
       });
   });
 });
-*/
