@@ -116,5 +116,34 @@
     "queries": [],
     "exampleBodyRequest": {},
     "exampleResponse": {}
+  },
+  "GET /api/classes/:teacher_id/:class_id": {
+    "description": "Retrieves detailed information for a specific class specified by class_id.",
+    "exampleRequest": {
+      "url": "/api/classes/101/2",
+      "method": "GET"
+    },
+    "exampleResponse": {
+      "class": {
+        "id": 1,
+        "teacher_id": 101,
+        "class_name": "English Literature",
+        "schedule": "Mon, Wed, Fri - 10:00 AM to 11:00 AM",
+        "created_at": "2023-08-20T10:00:00.000Z"
+      },
+      "students": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        {
+          "id": 2,
+          "name": "Jane Doe",
+          "email": "jane.doe@example.com"
+        }
+      ]
+    }
   }
+
 }
