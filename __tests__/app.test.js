@@ -217,7 +217,7 @@ describe("GET /api/lessons/:lesson_id", () => {
           body: expect.any(String),
           teacher_id: expect.any(Number),
           created_at: expect.any(String),
-        }
+        };
         expect(typeof lessons).toBe("object");
         expect(lessons).toMatchObject(expected);
       });
@@ -424,7 +424,7 @@ describe("post /api/lessons/:teacher_id/:class_id", () => {
   test("200 post: when sent teacher_id and class_id params as well as sent title and body updates lesson database with new lesson with ID, title, body, teacher_id and created_at", () => {
     return request(app)
       .post("/api/lessons/101/1")
-      .send({ title: "test title", body: "test body", due_date: "2023-09-19" })
+      .send({ title: "test title", body: "test body" })
       .expect(200)
       .then(() => {
         return db
