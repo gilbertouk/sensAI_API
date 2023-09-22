@@ -12,9 +12,6 @@ const {
   getClassesByTeacherID,
 } = require("./controllers/classes.teacher_ID.controller.js");
 const {
-  getLessonsByStudentId,
-} = require("./controllers/getLessonsByStudentId.js");
-const {
   postAssignmentsByTeacherIDAndClassID,
 } = require("./controllers/assignments.teacher_id.class_id.controller.js");
 const {
@@ -34,7 +31,6 @@ const {
 const apiRouter = require("./routes");
 
 app.get("/api/users", getAllUsers);
-app.get("/api/lessons/:student_id", getLessonsByStudentId);
 app.get("/api/lessons/:lesson_id", getLessonByID);
 app.get("/api/classes/:teacher_id", getClassesByTeacherID);
 app.post(

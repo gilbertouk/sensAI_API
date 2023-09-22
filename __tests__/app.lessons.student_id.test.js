@@ -7,9 +7,9 @@ const data = require("../db/data/test-data/index.js");
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe("GET /lessons/:student_id", ()=>{
+describe("GET /api/student/:student_id/lessons", ()=>{
     test("200: Responds with the correct array of lesson objects", ()=> {
-      return request(app).get("/api/lessons/1").expect(200).then(({body})=> {
+      return request(app).get("/api/student/1/lessons").expect(200).then(({body})=> {
         const {lessons} = body;
         
         const expected = {
@@ -27,14 +27,14 @@ describe("GET /lessons/:student_id", ()=>{
       })
     })
     test("400: Responds with bad request when given bad student_id", ()=>{
-      return request(app).get("/api/lessons/test").expect(400).then(({body}) =>{
+      return request(app).get("/api/student/test/lessons").expect(400).then(({body}) =>{
         const {msg} = body;
         
         expect(msg).toEqual("Bad request");
       })
     })
     test("404: Responds with not found when given bad student_id", ()=> {
-      return request(app).get("/api/lessons/1000000").expect(404).then(({body}) => {
+      return request(app).get("/api/student/1000000/lessons").expect(404).then(({body}) => {
         const {msg} = body;
   
         expect(msg).toEqual("Not found");
