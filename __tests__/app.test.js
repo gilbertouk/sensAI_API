@@ -202,7 +202,7 @@ describe("GET /api/lessons/:lesson_id", () => {
       .expect(200)
       .then((res) => {
         const { lessons } = res.body;
-        expect(lessons[0]).toMatchObject(result);
+        expect(lessons).toMatchObject(result);
       });
   });
   test("200 GET: responds with an lesson object by lesson_ID with properties id, title, body, teacher_id, created_at", () => {
@@ -211,18 +211,15 @@ describe("GET /api/lessons/:lesson_id", () => {
       .expect(200)
       .then((res) => {
         const { lessons } = res.body;
+        const expected = {
+          id: expect.any(Number),
+          title: expect.any(String),
+          body: expect.any(String),
+          teacher_id: expect.any(Number),
+          created_at: expect.any(String),
+        }
         expect(typeof lessons).toBe("object");
-        lessons.forEach((lesson) => {
-          expect(lesson).toEqual(
-            expect.objectContaining({
-              id: expect.any(Number),
-              title: expect.any(String),
-              body: expect.any(String),
-              teacher_id: expect.any(Number),
-              created_at: expect.any(String),
-            })
-          );
-        });
+        expect(lessons).toMatchObject(expected);
       });
   });
 
