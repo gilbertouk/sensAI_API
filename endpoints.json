@@ -149,5 +149,25 @@
         }
       ]
     }
+  },
+  "GET /api/student/teachers/:student_id": {
+    "description": "serves an object with the key teachers which is an array with the teachers of a specific student's classes",
+    "exampleRequest": {
+      "url": "/api/student/teachers/10",
+      "method": "GET"
+    },
+    "exampleResponse": {
+      "teachers": [
+        {
+          "id": 101,
+          "name": "User101",
+          "surname": "Surname101",
+          "email": "user101.surname101@yahoo.com",
+          "role": "teacher",
+          "created_at": "2003-11-07T00:00:00.000Z",
+          "disability": null
+        }
+      ]
+    }
   }
 }
