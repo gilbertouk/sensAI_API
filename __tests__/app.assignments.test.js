@@ -163,3 +163,73 @@ describe("PATCH /api/assignmentsid/:assignment_id", () => {
       });
   });
 });
+
+describe("GET /api/assignmentsid/:assignment_id", () => {
+  test("200: Responds with assignment object", () => {
+    return request(app)
+      .get("/api/assignmentsid/1")
+      .expect(200)
+      .then(({ body }) => {
+        const { assignment } = body;
+
+        expect(assignment).toMatchObject({
+          users_assignments_id: expect.any(Number),
+          user_name: expect.any(String),
+          user_surname: expect.any(String),
+          user_email: expect.any(String),
+          user_role: expect.any(String),
+          user_created_at: expect.any(String),
+          user_disability: expect.any(String),
+          assignment_title: expect.any(String),
+          assignment_body: expect.any(String),
+          assignment_teacher_id: expect.any(Number),
+          assignment_created_at: expect.any(String),
+          assignment_due_date: expect.any(String),
+        });
+
+        // Check that optional fields are either of the expected type or null.
+        expect(
+          typeof assignment.user_disability === "string" ||
+            assignment.user_disability === null
+        ).toBe(true);
+        expect(
+          typeof assignment.users_assignments_feedback === "string" ||
+            assignment.users_assignments_feedback === null
+        ).toBe(true);
+        expect(
+          typeof assignment.users_assignments_mark === "number" ||
+            assignment.users_assignments_mark === null
+        ).toBe(true);
+        expect(
+          typeof assignment.users_assignments_submit_date === "string" ||
+            assignment.users_assignments_submit_date === null
+        ).toBe(true);
+        expect(
+          typeof assignment.users_assignments_work === "string" ||
+            assignment.users_assignments_work === null
+        ).toBe(true);
+      });
+  });
+
+  test("400: Returns Bad Request for invalid assignment_id", () => {
+    return request(app)
+      .get("/api/assignmentsid/test")
+      .expect(400)
+      .then(({ body }) => {
+        const { msg } = body;
+
+        expect(msg).toEqual("Bad request");
+      });
+  });
+
+  test("404: Returns Not Found for non-existent assignment_id", () => {
+    return request(app)
+      .get("/api/assignmentsid/9999")
+      .expect(404)
+      .then(({ body }) => {
+        const { msg } = body;
+
+        expect(msg).toEqual("Not found");
+      });
+  });
+});
