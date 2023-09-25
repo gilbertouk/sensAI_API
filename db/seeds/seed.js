@@ -87,7 +87,7 @@ const seed = async ({
         work TEXT,
         submit_date TIMESTAMP,
         feedback TEXT,
-        mark INTEGER
+        mark TEXT
       );
     `);
     const insertUsersQueryStr = format(
