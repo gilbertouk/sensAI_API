@@ -1,5 +1,6 @@
 const {
   updateAssignmentByIdAsTeacher,
+  selectAssignmentById,
 } = require("../models/assignments.models");
 
 const patchAssignmentByIdAsTeacher = (req, res, next) => {
@@ -15,4 +16,15 @@ const patchAssignmentByIdAsTeacher = (req, res, next) => {
     });
 };
 
-module.exports = { patchAssignmentByIdAsTeacher };
+const getAssignmentById = (req, res, next) => {
+  const { assignment_id } = req.params;
+  selectAssignmentById(assignment_id)
+    .then((assignment) => {
+      res.status(200).send({ assignment });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+module.exports = { patchAssignmentByIdAsTeacher, getAssignmentById };
