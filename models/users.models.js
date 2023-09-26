@@ -51,6 +51,31 @@ const insertUser = (user) => {
     });
 };
 
+const updateUserById = (userId, updatedData) => {
+  const { name, surname, email, disability } = updatedData;
+
+  const query = `
+    UPDATE users
+    SET
+      name = $1,
+      surname = $2,
+      email = $3,
+      disability = $4
+    WHERE id = $5
+    RETURNING *;
+  `;
+
+  const values = [name, surname, email, disability, userId];
+  return db.query(query, values)
+    .then(({ rows }) => {
+      if (!rows || rows.length === 0) {
+        return null;
+      }
+
+      return rows[0];
+    });
+};
 
 
-module.exports = { fetchAllUsers, selectUserByEmail, insertUser, insertUserByEmail };
+
+module.exports = { fetchAllUsers, selectUserByEmail, insertUser, insertUserByEmail, updateUserById };

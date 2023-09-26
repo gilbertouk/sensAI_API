@@ -3,6 +3,7 @@ const {
   selectUserByEmail,
   insertUserByEmail,
   insertUser,
+  updateUserById
 } = require("../models/users.models.js");
 
 const getAllUsers = (req, res, next) => {
@@ -52,7 +53,26 @@ const postUser = (req, res, next) => {
     });
 };
 
+const patchUser = (req, res, next) => {
+  const userId = req.params.user_id;
+  const updatedData = req.body;
 
-module.exports = { getAllUsers, getUserByEmail, postUserByEmail, postUser };
+  updateUserById(userId, updatedData)
+    .then((updatedUser) => {
+      if (updatedUser) {
+        res.status(200).send(updatedUser);
+      } else {
+        res.status(404).send({ msg: "Not found" });
+      }
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+
+
+
+module.exports = { getAllUsers, getUserByEmail, postUserByEmail, postUser, patchUser };
 
 
