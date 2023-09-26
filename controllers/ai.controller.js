@@ -24,7 +24,8 @@ exports.getAPIRes = async (req, res, next) => {
             messages: [{
                 role: 'user',
                 content,
-        }]
+            }],
+            temperature: 0,
         })
 
         const completion = response.choices[0].message.content;

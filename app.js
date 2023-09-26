@@ -36,7 +36,7 @@ const {
 } = require("./controllers/lesson.lessonID.controller.js");
 
 const apiRouter = require("./routes");
-const { getAPIRes } = require("./controllers/api.controller.js");
+const { getAPIRes } = require("./controllers/ai.controller.js");
 
 app.get("/api/users", getAllUsers);
 app.get("/api/lessons/:lesson_id", getLessonByID);
