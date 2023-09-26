@@ -37,6 +37,7 @@ const {
 const { patchUser } = require("./controllers/users.controllers.js")
 
 const apiRouter = require("./routes");
+const { getAPIRes } = require("./controllers/ai.controller.js");
 
 app.get("/api/users", getAllUsers);
 app.get("/api/lessons/:lesson_id", getLessonByID);
@@ -60,6 +61,8 @@ app.delete("/api/lessons/:lesson_id/:user_id", deleteLessonByLessonIdAndUserId);
 app.delete("/api/lessons/:lesson_id", deleteLessonByLessonId);
 
 app.patch("/api/users/:user_id", patchUser)
+
+app.post("/ai/assist", getAPIRes)
 
 // router
 app.use("/api", apiRouter);
