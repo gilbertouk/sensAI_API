@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const http = require("http").Server(app); // socket.io
-const IO_PORT = 4000;
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",
@@ -85,4 +84,4 @@ app.use((err, req, res, next) => {
   res.status(500).send({ msg: "server error getting API" });
 });
 
-module.exports = { app, io, http, IO_PORT };
+module.exports = { app, io, http };
