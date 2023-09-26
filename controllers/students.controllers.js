@@ -3,6 +3,7 @@ const {
   fetchStudentAssignments,
   fetchStudentAssignmentByAssignmentId,
   updateStudentAssignment,
+  fetchAllStudentTeachersByClassId,
 } = require("../models/students.models");
 
 const getStudentAssignments = (req, res, next) => {
@@ -39,8 +40,20 @@ const patchStudentAssignment = (req, res, next) => {
     });
 };
 
+const getAllStudentTeachersByClassId = (req, res, next) => {
+  const { student_id } = req.params;
+  fetchAllStudentTeachersByClassId(student_id)
+    .then((teachers) => {
+      res.status(200).send({ teachers });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 module.exports = {
   getStudentAssignments,
   getStudentAssignmentByAssignmentId,
   patchStudentAssignment,
+  getAllStudentTeachersByClassId,
 };
