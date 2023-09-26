@@ -13,7 +13,7 @@ describe("api testing", ()=> {
             role: "user", 
             content: "What is 5x5 ?"
         }
-        return request(app).post("/ask").send(body).expect(201).then(({body})=> {
+        return request(app).post("/ai/assist").send(body).expect(201).then(({body})=> {
             const { message } = body;
 
             console.log(message);

@@ -59,7 +59,7 @@ app.delete("/api/lessons/:lesson_id/:user_id", deleteLessonByLessonIdAndUserId);
 
 app.delete("/api/lessons/:lesson_id", deleteLessonByLessonId);
 
-app.post("/ask", getAPIRes)
+app.post("/ai/assist", getAPIRes)
 
 // router
 app.use("/api", apiRouter);
