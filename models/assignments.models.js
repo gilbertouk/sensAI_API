@@ -14,7 +14,23 @@ const updateAssignmentByIdAsTeacher = async (assignment_id, mark, feedback) => {
       msg: "Not found",
     });
   }
-  // console.log(result.rows[0]);
+  return result.rows[0];
+};
+const updateAssignmentByIdAsStudent = async (assignment_id, work) => {
+  const currentDate = new Date().toISOString();
+  const result = await db.query(
+    `UPDATE users_assignments
+        SET work = $2,
+        submit_date = $3
+        WHERE assignment_id = $1 RETURNING *;`,
+    [assignment_id, work, currentDate]
+  );
+  if (result.rows.length === 0) {
+    throw {
+      status: 404,
+      msg: "Not found",
+    };
+  }
   return result.rows[0];
 };
 
@@ -52,4 +68,8 @@ const selectAssignmentById = async (assignment_id) => {
   return result.rows[0];
 };
 
-module.exports = { updateAssignmentByIdAsTeacher, selectAssignmentById };
+module.exports = {
+  updateAssignmentByIdAsStudent,
+  updateAssignmentByIdAsTeacher,
+  selectAssignmentById,
+};
