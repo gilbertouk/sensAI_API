@@ -233,3 +233,52 @@ describe("GET /api/assignmentsid/:assignment_id", () => {
       });
   });
 });
+
+describe("PATCH /api/assignmentsid/student/:assignment_id", () => {
+  test("200: Updates the student assignment and responds with the updated assignment object", () => {
+    const assignmentId = 1;
+    const newWork = "Updated work content";
+    return request(app)
+      .patch(`/api/assignmentsid/student/${assignmentId}`)
+      .send({ work: newWork })
+      .expect(200)
+      .then(({ body }) => {
+        const { assignment } = body;
+
+        expect(assignment).toMatchObject({
+          id: 1,
+          assignment_id: 1,
+          user_id: 1,
+          work: "Updated work content",
+          feedback: null,
+          mark: null,
+        });
+
+        expect(assignment).toHaveProperty("submit_date");
+      });
+  });
+
+  test("400: Bad Request for invalid assignment_id", () => {
+    const invalidAssignmentId = "invalid";
+    return request(app)
+      .patch(`/api/assignmentsid/student/${invalidAssignmentId}`)
+      .send({ work: "Any work content" })
+      .expect(400)
+      .then(({ body }) => {
+        const { msg } = body;
+        expect(msg).toEqual("Bad request");
+      });
+  });
+
+  test("404: Not Found for non-existent assignment_id", () => {
+    const nonExistentAssignmentId = 999999;
+    return request(app)
+      .patch(`/api/assignmentsid/student/${nonExistentAssignmentId}`)
+      .send({ work: "Any work content" })
+      .expect(404)
+      .then(({ body }) => {
+        const { msg } = body;
+        expect(msg).toEqual("Not found");
+      });
+  });
+});
