@@ -7,16 +7,17 @@ const data = require("../db/data/test-data/index.js");
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe("api testing", ()=> {
-    test("201: Responds with ai response", ()=> {
-        const body = {
-            role: "user", 
-            content: "What is 5x5 ?"
-        }
-        return request(app).post("/ai/assist").send(body).expect(201).then(({body})=> {
-            const { message } = body;
+// Commentted out to avoid costs from executing
+// describe("api testing", ()=> {
+//     test("201: Responds with ai response", ()=> {
+//         const body = {
+//             role: "user", 
+//             content: "What is 5x5 ?"
+//         }
+//         return request(app).post("/ai/assist").send(body).expect(201).then(({body})=> {
+//             const { message } = body;
 
-            console.log(message);
-        })
-    })
-})
+//             console.log(message);
+//         })
+//     })
+// })
