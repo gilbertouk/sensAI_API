@@ -56,8 +56,30 @@ const updateStudentAssignment = (student_id, assignment_id, work) => {
     });
 };
 
+const fetchAllStudentTeachersByClassId = (student_id) => {
+  return db
+    .query(
+      `SELECT users.id, users.name, users.surname, users.email, 
+      users.role, users.created_at, users.disability FROM users 
+      JOIN classes_users ON classes_users.user_id = users.id
+      WHERE users.role = 'teacher' AND classes_users.class_id IN 
+      (SELECT class_id FROM classes_users 
+       JOIN users ON users.id = classes_users.user_id
+       WHERE user_id = $1 AND users.role = 'student')`,
+      [student_id]
+    )
+    .then(({ rows }) => {
+      if (rows.length === 0) {
+        return Promise.reject({ status: 404, msg: "Not found" });
+      }
+
+      return rows;
+    });
+};
+
 module.exports = {
   fetchStudentAssignments,
   fetchStudentAssignmentByAssignmentId,
   updateStudentAssignment,
+  fetchAllStudentTeachersByClassId,
 };
