@@ -36,6 +36,7 @@ const {
 } = require("./controllers/lesson.lessonID.controller.js");
 
 const apiRouter = require("./routes");
+const { getAPIRes } = require("./controllers/api.controller.js");
 
 app.get("/api/users", getAllUsers);
 app.get("/api/lessons/:lesson_id", getLessonByID);
@@ -57,6 +58,8 @@ app.delete("/api/assignments/:assignment_id", deleteAssignmentsByAssignmentId);
 app.delete("/api/lessons/:lesson_id/:user_id", deleteLessonByLessonIdAndUserId);
 
 app.delete("/api/lessons/:lesson_id", deleteLessonByLessonId);
+
+app.post("/ask", getAPIRes)
 
 // router
 app.use("/api", apiRouter);
