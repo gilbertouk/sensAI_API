@@ -72,13 +72,13 @@ describe("GET /api/assignments/:teacher_id/:class_id", () => {
   });
 });
 
-describe("GET /api/assignments/:teacher_id", () => {
+describe("GET /api/assignments/:assignment_id/teacher/:teacher_id", () => {
   test("200: Returns status code 200", () => {
-    return request(app).get("/api/assignments/101").expect(200);
+    return request(app).get("/api/assignments/2/teacher/101").expect(200);
   });
   test("200: Returns array of student assignment objects", () => {
     return request(app)
-      .get("/api/assignments/101")
+      .get("/api/assignments/2/teacher/101")
       .expect(200)
       .then(({ body }) => {
         const { assignments } = body;
@@ -92,6 +92,8 @@ describe("GET /api/assignments/:teacher_id", () => {
           feedback: expect.any(Object) || expect.any(String),
           mark: expect.any(Object) || expect.any(String),
           class_id: expect.any(Number),
+          name: expect.any(String),
+          surname: expect.any(String),
         };
 
         assignments.forEach((assignment) => {
@@ -101,7 +103,17 @@ describe("GET /api/assignments/:teacher_id", () => {
   });
   test("404: Returns Not found with non-existent teacher_id", () => {
     return request(app)
-      .get("/api/assignments/10000")
+      .get("/api/assignments/2/teacher/10000")
+      .expect(404)
+      .then(({ body }) => {
+        const { msg } = body;
+
+        expect(msg).toEqual("Not found");
+      });
+  });
+  test("404: Returns Not found with non-existent assignment_id", () => {
+    return request(app)
+      .get("/api/assignments/20000/teacher/101")
       .expect(404)
       .then(({ body }) => {
         const { msg } = body;
@@ -111,7 +123,17 @@ describe("GET /api/assignments/:teacher_id", () => {
   });
   test("400: Returns Bad request with invalid teacher_id", () => {
     return request(app)
-      .get("/api/assignments/test")
+      .get("/api/assignments/2/teacher/test")
+      .expect(400)
+      .then(({ body }) => {
+        const { msg } = body;
+
+        expect(msg).toEqual("Bad request");
+      });
+  });
+  test("400: Returns Bad request with invalid assignment_id", () => {
+    return request(app)
+      .get("/api/assignments/invalid/teacher/101")
       .expect(400)
       .then(({ body }) => {
         const { msg } = body;

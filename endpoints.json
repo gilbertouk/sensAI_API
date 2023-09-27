@@ -169,5 +169,64 @@
         }
       ]
     }
+  },
+  "GET /api/assignments/:assignment_id/teacher/:teacher_id": {
+    "description": "serves an object with the key assignments which is an array with the students assignments",
+    "exampleRequest": {
+      "url": "/api/assignments/2/teacher/10",
+      "method": "GET"
+    },
+    "exampleResponse": {
+      "assignments": [
+        {
+          "id": 26,
+          "assignment_id": 2,
+          "user_id": 1,
+          "work": null,
+          "submit_date": null,
+          "feedback": null,
+          "mark": null,
+          "name": "User1",
+          "surname": "Surname1",
+          "class_id": 1
+        },
+        {
+          "id": 27,
+          "assignment_id": 2,
+          "user_id": 2,
+          "work": null,
+          "submit_date": null,
+          "feedback": null,
+          "mark": null,
+          "name": "User2",
+          "surname": "Surname2",
+          "class_id": 1
+        },
+        {
+          "id": 28,
+          "assignment_id": 2,
+          "user_id": 3,
+          "work": null,
+          "submit_date": null,
+          "feedback": null,
+          "mark": null,
+          "name": "User3",
+          "surname": "Surname3",
+          "class_id": 1
+        },
+        {
+          "id": 29,
+          "assignment_id": 2,
+          "user_id": 4,
+          "work": null,
+          "submit_date": null,
+          "feedback": null,
+          "mark": null,
+          "name": "User4",
+          "surname": "Surname4",
+          "class_id": 1
+        }
+      ]
+    }
   }
 }

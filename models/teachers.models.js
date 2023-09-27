@@ -42,19 +42,19 @@ exports.removeUserAssignmentByUserIdAndAssignmentId = (
     });
 };
 
-exports.getAssignmentData = (teacher_id) => {
+exports.getAssignmentData = (assignment_id, teacher_id) => {
   return db
     .query(
       `
-    SELECT users_assignments.*, classes_users.class_id
+    SELECT users_assignments.*, users.name, users.surname, classes_users.class_id
           FROM users
           JOIN users_assignments ON users.id = users_assignments.user_id
           JOIN assignments ON users_assignments.assignment_id = assignments.id
           JOIN classes_users ON users.id = classes_users.user_id
           JOIN classes ON classes_users.class_id = classes.id
-          WHERE assignments.teacher_id = $1
+          WHERE assignments.teacher_id = $1 AND assignments.id = $2
     `,
-      [teacher_id]
+      [teacher_id, assignment_id]
     )
     .then(({ rows }) => {
       if (rows.length === 0) {
