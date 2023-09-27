@@ -192,8 +192,8 @@ describe("GET /api/lessons/:lesson_id", () => {
   test("200 GET: responds with an lesson object by lesson ID", () => {
     const result = {
       id: 1,
-      title: "English: Shakespeare",
-      body: "An exploration of Shakespeare, his plays and books",
+      title: "English: Essay structure",
+      body: "well-structured formal expository and narrative essays",    
       teacher_id: 101,
       created_at: "2021-01-01T00:00:00.000Z",
     };
@@ -259,7 +259,7 @@ describe("GET /api/classes/:teacher_id", () => {
       age_group: "KS3",
       subject: "english",
       created_at: "2005-01-22T00:00:00.000Z",
-      exam_board: "OCR",
+      exam_board: "SATS",
     };
     return request(app)
       .get("/api/classes/101")

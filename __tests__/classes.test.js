@@ -26,7 +26,7 @@ describe("GET /api/classes/:teacher_id", () => {
       age_group: "KS3",
       subject: "english",
       created_at: "2005-01-22T00:00:00.000Z",
-      exam_board: "OCR",
+      exam_board: "SATS",
     };
     return request(app)
       .get("/api/classes/101")

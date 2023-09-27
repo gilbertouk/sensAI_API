@@ -21,16 +21,16 @@ describe("GET /api/lessons/:teacher_id/:class_id", () => {
             lessons: [
               {
                 id: 3,
-                title: "Art: Dali",
-                body: "A exploration of surrealism and its implications for modernist art",
+                title: "Art: Fine Art",
+                body: "to  demonstrate the knowledge, skills and understanding through areas of study relevant to drawing.",
                 teacher_id: 101,
                 created_at: "2023-05-02T23:00:00.000Z",
                 class_id: 2,
               },
               {
                 id: 4,
-                title: "Art: Michelangelo",
-                body: "A consideration of how science, art, and math influence Michelangelo's creations",
+                title: "Art: Art and Craft",
+                body: "This title offers a broad-based course promoting diverse learning experiences in Art, Craft, and Design. It encompasses an extensive array of techniques, processes, and materials, including recyclable ones. The focus is on expanding the breadth of approach while maintaining the depth of learning. Students can explore personal interests across a wide course of study, incorporating practical, critical, and contextual sources. Flexibility in content and approach is key, with students required to engage in at least two of the listed titles: Fine Art, Graphic Communication, Textile Design, Three-dimensional Design, Photography, Critical and Contextual Studies",
                 teacher_id: 101,
                 created_at: "2019-04-02T23:00:00.000Z",
                 class_id: 2,
