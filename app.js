@@ -34,7 +34,7 @@ const {
 const {
   deleteLessonByLessonId,
 } = require("./controllers/lesson.lessonID.controller.js");
-const { patchUser } = require("./controllers/users.controllers.js")
+const { patchUser } = require("./controllers/users.controllers.js");
 
 const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
@@ -60,9 +60,9 @@ app.delete("/api/lessons/:lesson_id/:user_id", deleteLessonByLessonIdAndUserId);
 
 app.delete("/api/lessons/:lesson_id", deleteLessonByLessonId);
 
-app.patch("/api/users/:user_id", patchUser)
+app.patch("/api/users/:user_id", patchUser);
 
-app.post("/ai/assist", getAPIRes)
+app.post("/ai/assist", getAPIRes);
 
 // router
 app.use("/api", apiRouter);
