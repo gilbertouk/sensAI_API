@@ -29,8 +29,8 @@ exports.deleteAssignmentsByAssignmentIdAndUserId = (req, res, next) => {
 };
 
 exports.getAssignments = (req, res, next) => {
-  const { teacher_id } = req.params;
-  getAssignmentData(teacher_id)
+  const { assignment_id, teacher_id } = req.params;
+  getAssignmentData(assignment_id, teacher_id)
     .then((assignments) => {
       res.status(200).send({ assignments });
     })
