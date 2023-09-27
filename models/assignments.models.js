@@ -1,12 +1,12 @@
 const db = require("../db/connection.js");
 const PGFormat = require("pg-format");
 
-const updateAssignmentByIdAsTeacher = async (assignment_id, mark, feedback) => {
+const updateAssignmentByIdAsTeacher = async (id, mark, feedback) => {
   const result = await db.query(
     `UPDATE users_assignments 
       SET mark = $2, feedback = $3 
-      WHERE assignment_id = $1 RETURNING *;`,
-    [assignment_id, mark, feedback]
+      WHERE id = $1 RETURNING *;`,
+    [id, mark, feedback]
   );
   if (result.rows.length === 0) {
     return Promise.reject({
@@ -16,14 +16,14 @@ const updateAssignmentByIdAsTeacher = async (assignment_id, mark, feedback) => {
   }
   return result.rows[0];
 };
-const updateAssignmentByIdAsStudent = async (assignment_id, work) => {
+const updateAssignmentByIdAsStudent = async (id, work) => {
   const currentDate = new Date().toISOString();
   const result = await db.query(
     `UPDATE users_assignments
         SET work = $2,
         submit_date = $3
-        WHERE assignment_id = $1 RETURNING *;`,
-    [assignment_id, work, currentDate]
+        WHERE id = $1 RETURNING *;`,
+    [id, work, currentDate]
   );
   if (result.rows.length === 0) {
     throw {
