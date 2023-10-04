@@ -12,12 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 const {
-  getClassesByTeacherID,
-} = require("./controllers/classes.teacher_ID.controller.js");
-const {
-  postAssignmentsByTeacherIDAndClassID,
-} = require("./controllers/assignments.teacher_id.class_id.controller.js");
-const {
   postLessonsByTeacherIdAndClassId,
 } = require("./controllers/lessons.controllers.js");
 const {
@@ -35,11 +29,6 @@ const { patchUser } = require("./controllers/users.controllers.js");
 const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
 
-app.get("/api/classes/:teacher_id", getClassesByTeacherID);
-app.post(
-  "/api/assignments/:teacher_id/:class_id",
-  postAssignmentsByTeacherIDAndClassID
-);
 app.post(
   "/api/lessons/:teacher_id/:class_id",
   postLessonsByTeacherIdAndClassId
