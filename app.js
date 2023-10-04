@@ -12,22 +12,12 @@ app.use(cors());
 app.use(express.json());
 
 const {
-  deleteAssignmentsByAssignmentId,
-} = require("./controllers/teachers.controllers");
-const {
-  deleteLessonByLessonIdAndUserId,
-} = require("./controllers/lesson.lessonID.userID.controller.js");
-const {
   deleteLessonByLessonId,
 } = require("./controllers/lesson.lessonID.controller.js");
 const { patchUser } = require("./controllers/users.controllers.js");
 
 const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
-
-app.delete("/api/assignments/:assignment_id", deleteAssignmentsByAssignmentId);
-
-app.delete("/api/lessons/:lesson_id/:user_id", deleteLessonByLessonIdAndUserId);
 
 app.delete("/api/lessons/:lesson_id", deleteLessonByLessonId);
 
