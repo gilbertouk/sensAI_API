@@ -237,7 +237,9 @@
     "DELETE /api/assignments/:assignment_id",
     "PATCH /api/assignmentsid/:assignments_id",
     "PATCH /api/student/:assignments_id",
-    "GET /api/:assignments_id"
+    "GET /api/:assignments_id",
+    "GET /api/classes/:teacher_id",
+    "GET /api/classes/:teacher_id/:class_id"
 
   ]
 }
