@@ -14,7 +14,7 @@ app.use(express.json());
 const apiRouter = require("./routes");
 const { getAIRes } = require("./controllers/ai.controller.js");
 
-
+// AI
 app.post("/api/ai/assist", getAIRes);
 
 // router
