@@ -248,9 +248,11 @@
     "GET /api/student/:student_id/assignments/:assignment_id",
     "PATCH /api/student/:student_id/assignments/:assignment_id",
     "GET /api/student/:student_id/lessons",
-    "GET /api/student/teachers/:student_id"
-    
- 
-
+    "GET /api/student/teachers/:student_id",
+    "GET /api/users/email/:email",
+    "POST /api/users/newuser",
+    "POST /api/users/email",
+    "GET /api/users",
+    "PATCH /api/users/:user_id"
   ]
 }
