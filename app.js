@@ -15,7 +15,7 @@ const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
 
 
-app.post("/ai/assist", getAPIRes);
+app.post("/api/ai/assist", getAPIRes);
 
 // router
 app.use("/api", apiRouter);
