@@ -11,58 +11,11 @@ const io = require("socket.io")(http, {
 app.use(cors());
 app.use(express.json());
 
-const { getAllUsers } = require("./controllers/users.controllers.js");
-const {
-  getLessonByID,
-} = require("./controllers/lessons.lesson_ID.controller.js");
-const {
-  getClassesByTeacherID,
-} = require("./controllers/classes.teacher_ID.controller.js");
-const {
-  postAssignmentsByTeacherIDAndClassID,
-} = require("./controllers/assignments.teacher_id.class_id.controller.js");
-const {
-  postLessonsByTeacherIdAndClassId,
-} = require("./controllers/lessons.controllers.js");
-const {
-  deleteAssignmentsByAssignmentIdAndUserId,
-  deleteAssignmentsByAssignmentId,
-} = require("./controllers/teachers.controllers");
-const {
-  deleteLessonByLessonIdAndUserId,
-} = require("./controllers/lesson.lessonID.userID.controller.js");
-const {
-  deleteLessonByLessonId,
-} = require("./controllers/lesson.lessonID.controller.js");
-const { patchUser } = require("./controllers/users.controllers.js");
-
 const apiRouter = require("./routes");
-const { getAPIRes } = require("./controllers/ai.controller.js");
+const { getAIRes } = require("./controllers/ai.controller.js");
 
-app.get("/api/users", getAllUsers);
-app.get("/api/lessons/:lesson_id", getLessonByID);
-app.get("/api/classes/:teacher_id", getClassesByTeacherID);
-app.post(
-  "/api/assignments/:teacher_id/:class_id",
-  postAssignmentsByTeacherIDAndClassID
-);
-app.post(
-  "/api/lessons/:teacher_id/:class_id",
-  postLessonsByTeacherIdAndClassId
-);
-app.delete(
-  "/api/assignments/:assignment_id/:user_id",
-  deleteAssignmentsByAssignmentIdAndUserId
-);
-app.delete("/api/assignments/:assignment_id", deleteAssignmentsByAssignmentId);
-
-app.delete("/api/lessons/:lesson_id/:user_id", deleteLessonByLessonIdAndUserId);
-
-app.delete("/api/lessons/:lesson_id", deleteLessonByLessonId);
-
-app.patch("/api/users/:user_id", patchUser);
-
-app.post("/ai/assist", getAPIRes);
+// AI
+app.post("/api/ai/assist", getAIRes);
 
 // router
 app.use("/api", apiRouter);
