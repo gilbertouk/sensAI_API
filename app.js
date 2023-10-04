@@ -12,9 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 const {
-  postLessonsByTeacherIdAndClassId,
-} = require("./controllers/lessons.controllers.js");
-const {
   deleteAssignmentsByAssignmentIdAndUserId,
   deleteAssignmentsByAssignmentId,
 } = require("./controllers/teachers.controllers");
@@ -29,10 +26,6 @@ const { patchUser } = require("./controllers/users.controllers.js");
 const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
 
-app.post(
-  "/api/lessons/:teacher_id/:class_id",
-  postLessonsByTeacherIdAndClassId
-);
 app.delete(
   "/api/assignments/:assignment_id/:user_id",
   deleteAssignmentsByAssignmentIdAndUserId
