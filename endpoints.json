@@ -228,5 +228,32 @@
         }
       ]
     }
-  }
+  },
+  "Full API endpoints list": [
+    "GET /api/ai/assist",
+    "GET /api/assignments/:teacher_id/:class_id",
+    "GET /api/assignments/:assignment_id/teacher/:teacher_id",
+    "POST /api/assignments/:teacher_id/:class_id",
+    "DELETE /api/assignments/:assignment_id/:user_id",
+    "DELETE /api/assignments/:assignment_id",
+    "PATCH /api/assignmentsid/:assignments_id",
+    "PATCH /api/student/:assignments_id",
+    "GET /api/:assignments_id",
+    "GET /api/classes/:teacher_id",
+    "GET /api/classes/:lesson_id",
+    "GET /api/lessons/:teacher_id/:class_id",
+    "POST /api/lessons/:teacher_id/:class_id",
+    "DELETE /api/lessons/:lesson_id/:user_id",
+    "DELETE /api/lessons/:lesson_id",
+    "GET /api/student/:student_id/assignments",
+    "GET /api/student/:student_id/assignments/:assignment_id",
+    "PATCH /api/student/:student_id/assignments/:assignment_id",
+    "GET /api/student/:student_id/lessons",
+    "GET /api/student/teachers/:student_id",
+    "GET /api/users/email/:email",
+    "POST /api/users/newuser",
+    "POST /api/users/email",
+    "GET /api/users",
+    "PATCH /api/users/:user_id"
+  ]
 }
