@@ -230,6 +230,7 @@
     }
   },
   "Full API endpoints list": [
+    "GET /api/ai/assist",
     "GET /api/assignments/:teacher_id/:class_id",
     "GET /api/assignments/:assignment_id/teacher/:teacher_id",
     "POST /api/assignments/:teacher_id/:class_id",
