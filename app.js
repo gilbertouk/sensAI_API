@@ -12,10 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 const apiRouter = require("./routes");
-const { getAPIRes } = require("./controllers/ai.controller.js");
+const { getAIRes } = require("./controllers/ai.controller.js");
 
 
-app.post("/api/ai/assist", getAPIRes);
+app.post("/api/ai/assist", getAIRes);
 
 // router
 app.use("/api", apiRouter);

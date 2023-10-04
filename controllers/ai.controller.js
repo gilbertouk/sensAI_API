@@ -9,7 +9,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_KEY,
 });
 
-exports.getAPIRes = async (req, res, next) => {
+exports.getAIRes = async (req, res, next) => {
   const { content } = req.body;
   try {
     if (content === null) {
