@@ -11,12 +11,9 @@ const io = require("socket.io")(http, {
 app.use(cors());
 app.use(express.json());
 
-const { patchUser } = require("./controllers/users.controllers.js");
-
 const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
 
-app.patch("/api/users/:user_id", patchUser);
 
 app.post("/ai/assist", getAPIRes);
 
