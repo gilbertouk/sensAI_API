@@ -239,7 +239,12 @@
     "PATCH /api/student/:assignments_id",
     "GET /api/:assignments_id",
     "GET /api/classes/:teacher_id",
-    "GET /api/classes/:teacher_id/:class_id"
+    "GET /api/classes/:lesson_id",
+    "GET /api/lessons/:teacher_id/:class_id",
+    "POST /api/lessons/:teacher_id/:class_id",
+    "DELETE /api/lessons/:lesson_id/:user_id",
+    "DELETE /api/lessons/:lesson_id"
+ 
 
   ]
 }
