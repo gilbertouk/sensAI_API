@@ -11,7 +11,6 @@ const io = require("socket.io")(http, {
 app.use(cors());
 app.use(express.json());
 
-const { getAllUsers } = require("./controllers/users.controllers.js");
 const {
   getLessonByID,
 } = require("./controllers/lessons.lesson_ID.controller.js");
@@ -39,7 +38,6 @@ const { patchUser } = require("./controllers/users.controllers.js");
 const apiRouter = require("./routes");
 const { getAPIRes } = require("./controllers/ai.controller.js");
 
-// app.get("/api/users", getAllUsers);
 app.get("/api/lessons/:lesson_id", getLessonByID);
 app.get("/api/classes/:teacher_id", getClassesByTeacherID);
 app.post(
