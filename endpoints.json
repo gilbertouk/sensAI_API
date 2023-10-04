@@ -243,7 +243,13 @@
     "GET /api/lessons/:teacher_id/:class_id",
     "POST /api/lessons/:teacher_id/:class_id",
     "DELETE /api/lessons/:lesson_id/:user_id",
-    "DELETE /api/lessons/:lesson_id"
+    "DELETE /api/lessons/:lesson_id",
+    "GET /api/student/:student_id/assignments",
+    "GET /api/student/:student_id/assignments/:assignment_id",
+    "PATCH /api/student/:student_id/assignments/:assignment_id",
+    "GET /api/student/:student_id/lessons",
+    "GET /api/student/teachers/:student_id"
+    
  
 
   ]
