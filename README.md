@@ -1,9 +1,13 @@
 # sensAI_API
+
 ## Description
-sensAI_API is the back end for [sensAI](https://github.com/RonaldB123/sensAI) which is an AI enhanced learning and management platform created as a group project during the July 2023 NorthCoders bootcamp.
+
+sensAI_API is the back end for [sensAI](https://github.com/gilbertouk/sensAI) which is an AI enhanced learning and management platform created as a group project during the July 2023 NorthCoders bootcamp.
 
 ## Getting Started
+
 ### Prerequisites
+
 - Node
 - Git
 - Express
@@ -12,13 +16,17 @@ sensAI_API is the back end for [sensAI](https://github.com/RonaldB123/sensAI) wh
 - mongodb
 
 ### Installing dependencies
+
 Paste into terminal
+
 ```
 npm i
 ```
 
 ### Environment Variables
+
 #### Database
+
 We need to create environment variables for our database.
 
 Create a file called `.env.development` in the base root of the repository.
@@ -60,6 +68,7 @@ We need to create environment variables for MongoDB.
 Create a file called `.env` in the base of the repository.
 
 Paste inside the `.env` file:
+
 ```
 MONGODB_URI=
 ```
@@ -88,7 +97,7 @@ npm run seed
 
 ### Hosting
 
-In order for [sensAI](https://github.com/RonaldB123/sensAI) to access the back end we locally host it.
+In order for [sensAI](https://github.com/gilbertouk/sensAI) to access the back end we locally host it.
 
 Paste in the terminal:
 
@@ -96,4 +105,4 @@ Paste in the terminal:
 npm run start
 ```
 
-You should now be ready to go onto [sensAI](https://github.com/RonaldB123/sensAI) to follow the instructions.
+You should now be ready to go onto [sensAI](https://github.com/gilbertouk/sensAI) to follow the instructions.
